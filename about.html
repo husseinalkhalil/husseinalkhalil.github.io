@@ -1,28 +1,84 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>عنّي - حسين الخليل</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f5efff;
       color: #2f003f;
-      text-align: center;
-      padding: 50px;
+      margin: 0;
+      padding: 0;
     }
-    a {
+
+    nav {
+      background-color: #5e2ca5;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1em;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      padding: 2em;
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h1 {
+      color: #5e2ca5;
+      margin-bottom: 1em;
+    }
+
+    p {
+      line-height: 1.8;
+      font-size: 1.1em;
+      margin-bottom: 1.5em;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
       color: #6a0dad;
       text-decoration: none;
       font-weight: bold;
     }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <h1>عنّي</h1>
-  <p>أنا حسين الخليل، إنسان عادي أبحث عن الحقيقة بعيدًا عن الآبائية والتلقين. أؤمن أن العقل هو مناط التكليف.</p>
-  <p>أنشر أفكاري التنويرية وكتبي مجانًا لكل باحث عن الحقيقة، وأربط موقعي بقناتي على اليوتيوب ومنصاتي الاجتماعية.</p>
-  <br>
-  <a href="index.html">↩ العودة للرئيسية</a>
+
+  <!-- شريط التنقل -->
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="about.html">عني</a>
+    <a href="books.html">الكتب</a>
+    <a href="https://ko-fi.com/husseinalkhalil" target="_blank">المنصات</a>
+  </nav>
+
+  <!-- المحتوى -->
+  <div class="container">
+    <h1>عنّي</h1>
+    <p>أنا حسين الخليل، إنسان عادي أبحث عن الحقيقة بعيدًا عن الآبائية والتلقين. أؤمن أن العقل هو مناط التكليف.</p>
+    <p>أنشر أفكاري التنويرية وكتبي مجانًا لكل باحث عن الحقيقة، وأربط موقعي بقناتي على اليوتيوب ومنصاتي الاجتماعية.</p>
+    <a href="index.html" class="back-link">↩ العودة للرئيسية</a>
+  </div>
+
 </body>
 </html>
