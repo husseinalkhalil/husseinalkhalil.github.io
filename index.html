@@ -9,18 +9,44 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f2ebf8;
             color: #3e0066;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #5e2ca5;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1em;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
             text-align: center;
             padding: 2em;
-            direction: rtl;
         }
+
         h1 {
             color: #5e2ca5;
+            margin-bottom: 0.5em;
         }
+
         .cover {
             width: 300px;
             margin: 2em auto;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
+
         .button {
             background-color: #5e2ca5;
             color: white;
@@ -29,23 +55,37 @@
             border-radius: 8px;
             text-decoration: none;
             font-size: 1em;
-            margin-top: 1em;
+            margin: 1em 0.5em;
             display: inline-block;
         }
+
         .button:hover {
             background-color: #4a208f;
         }
     </style>
 </head>
 <body>
-    <h1>رواية هتون الحب</h1>
-    <p>بقلم <strong>حسين الخليل</strong>، رواية تتناول الحب، الزواج، الخرافة، وتضليل البسطاء باسم الدين والكرامات.</p>
-    <img src="hatoun-cover.png" alt="غلاف رواية هتون الحب" class="cover">
-    
-    <a href="https://ko-fi.com/husseinalkhalil" class="button">📘 شراء الرواية الآن – 3 دولار</a>
-    
-    <br><br>
-    
-    <a href="novel.html" class="button">📖 اقرأ المزيد عن الرواية</a>
+
+    <!-- شريط التنقل -->
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">عني</a>
+        <a href="books.html">الكتب</a>
+        <a href="novel.html">الرواية</a>
+        <a href="https://ko-fi.com/husseinalkhalil" target="_blank">المنصات</a>
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
+        <h1>رواية هتون الحب</h1>
+        <p>بقلم <strong>حسين الخليل</strong>، رواية تتناول الحب، الزواج، الخرافة، وتضليل البسطاء باسم الدين والكرامات.</p>
+        <img src="hatoun-cover.png" alt="غلاف رواية هتون الحب" class="cover">
+        
+        <div>
+            <a href="https://ko-fi.com/husseinalkhalil" class="button">📘 شراء الرواية الآن – 3 دولار</a>
+            <a href="novel.html" class="button">📖 اقرأ المزيد عن الرواية</a>
+        </div>
+    </div>
+
 </body>
 </html>
