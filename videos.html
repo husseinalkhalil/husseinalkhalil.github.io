@@ -39,6 +39,19 @@
       border-radius: 10px;
       border: none;
     }
+    .favorite-button {
+      background-color: #6a0dad;
+      color: white;
+      font-size: 14px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    .favorite-button:hover {
+      background-color: #4b0082;
+    }
   </style>
 </head>
 <body>
@@ -60,7 +73,23 @@
 
     <iframe src="https://www.youtube.com/embed/Gs1EvbX5U1w"
       title="YouTube video" allowfullscreen></iframe>
+    
+    <br>
+    <button class="favorite-button" onclick="addToFavorites('فيديو: من المسؤول عن فهم النص؟')">⭐ أضف إلى المفضلة</button>
   </div>
+
+  <script>
+    function addToFavorites(item) {
+      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      if (!favorites.includes(item)) {
+        favorites.push(item);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert("تمت إضافة العنصر إلى المفضلة!");
+      } else {
+        alert("العنصر موجود بالفعل في المفضلة.");
+      }
+    }
+  </script>
 
 </body>
 </html>
