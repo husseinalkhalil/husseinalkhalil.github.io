@@ -60,6 +60,21 @@
     .back-link:hover {
       text-decoration: underline;
     }
+
+    .favorite-button {
+      background-color: #6a0dad;
+      color: white;
+      font-size: 14px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+
+    .favorite-button:hover {
+      background-color: #4b0082;
+    }
   </style>
 </head>
 <body>
@@ -77,8 +92,26 @@
     <h1>عنّي</h1>
     <p>أنا حسين الخليل، إنسان عادي أبحث عن الحقيقة بعيدًا عن الآبائية والتلقين. أؤمن أن العقل هو مناط التكليف.</p>
     <p>أنشر أفكاري التنويرية وكتبي مجانًا لكل باحث عن الحقيقة، وأربط موقعي بقناتي على اليوتيوب ومنصاتي الاجتماعية.</p>
+
+    <!-- زر المفضلة -->
+    <button class="favorite-button" onclick="addToFavorites('صفحة عني')">⭐ أضف إلى المفضلة</button>
+
+    <br>
     <a href="index.html" class="back-link">↩ العودة للرئيسية</a>
   </div>
+
+  <script>
+    function addToFavorites(item) {
+      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      if (!favorites.includes(item)) {
+        favorites.push(item);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert("تمت إضافة الصفحة إلى المفضلة!");
+      } else {
+        alert("الصفحة موجودة مسبقًا في المفضلة.");
+      }
+    }
+  </script>
 
 </body>
 </html>
