@@ -76,6 +76,21 @@
     .article a:hover {
       text-decoration: underline;
     }
+
+    .favorite-button {
+      background-color: #6a0dad;
+      color: white;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 10px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .favorite-button:hover {
+      background-color: #4b0082;
+    }
   </style>
 </head>
 <body>
@@ -95,20 +110,33 @@
 
     <div class="article">
       <h2>❖ لماذا نحتاج إلى قراءة معاصرة للنص الديني؟</h2>
-      <p>
-        لم تعد القراءة التقليدية للنصوص قادرة على تقديم حلول لواقعنا المعاصر، بل كثير منها يخلق تناقضًا بين الدين والحياة...
-      </p>
+      <p>لم تعد القراءة التقليدية للنصوص قادرة على تقديم حلول لواقعنا المعاصر، بل كثير منها يخلق تناقضًا بين الدين والحياة...</p>
       <a href="#">قراءة المزيد</a>
+      <br>
+      <button class="favorite-button" onclick="addToFavorites('❖ لماذا نحتاج إلى قراءة معاصرة للنص الديني؟')">⭐ أضف إلى المفضلة</button>
     </div>
 
     <div class="article">
       <h2>❖ بين الوحي والتأويل: متى نضع العقل في مركز التفسير؟</h2>
-      <p>
-        التأويل ليس ترفًا فكريًا، بل ضرورة لفهم النص في سياقه التاريخي والاجتماعي، ولا بد أن يُعاد الاعتبار للعقل كأداة للفهم...
-      </p>
+      <p>التأويل ليس ترفًا فكريًا، بل ضرورة لفهم النص في سياقه التاريخي والاجتماعي، ولا بد أن يُعاد الاعتبار للعقل كأداة للفهم...</p>
       <a href="#">قراءة المزيد</a>
+      <br>
+      <button class="favorite-button" onclick="addToFavorites('❖ بين الوحي والتأويل: متى نضع العقل في مركز التفسير؟')">⭐ أضف إلى المفضلة</button>
     </div>
   </div>
+
+  <script>
+    function addToFavorites(item) {
+      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      if (!favorites.includes(item)) {
+        favorites.push(item);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert("تمت إضافة العنصر إلى المفضلة!");
+      } else {
+        alert("العنصر موجود بالفعل في المفضلة.");
+      }
+    }
+  </script>
 
 </body>
 </html>
