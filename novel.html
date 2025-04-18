@@ -2,97 +2,34 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>رواية هتون الحب - حسين الخليل</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f2ebf8;
-      color: #3e0066;
-      text-align: center;
-      padding: 2em;
-      margin: 0;
-    }
-    nav {
-      background-color: #5e2ca5;
-      padding: 1em;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1em;
-      font-weight: bold;
-      font-size: 1.1em;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    h1 {
-      color: #5e2ca5;
-      margin-bottom: 0.5em;
-    }
-    .cover {
-      width: 300px;
-      margin: 2em auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-radius: 10px;
-    }
-    .button {
-      background-color: #5e2ca5;
-      color: white;
-      padding: 1em 2em;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 1em;
-      margin-top: 1em;
-      display: inline-block;
-    }
-    .button:hover {
-      background-color: #4a208f;
-    }
-    .fav-btn {
-      background-color: #ff4081;
-      margin-top: 20px;
-    }
-    .fav-btn:hover {
-      background-color: #e91e63;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">الرئيسية</a>
-    <a href="about.html">عني</a>
-    <a href="books.html">الكتب</a>
-    <a href="https://ko-fi.com/husseinalkhalil" target="_blank">المنصات</a>
-  </nav>
+  <header>
+    <h1>رواية هتون الحب</h1>
+  </header>
 
-  <h1>رواية هتون الحب</h1>
-  <p>بقلم <strong>حسين الخليل</strong>، رواية تتناول الحب، الزواج، الخرافة، وتضليل البسطاء باسم الدين والكرامات.</p>
-<img src="images/hatoun-cover.jpg" alt="غلاف الرواية" style="width: 100%; max-width: 400px;" />
+  <main style="max-width: 800px; margin: auto; padding: 20px;">
+    <img src="images/hatoun-cover.jpg" alt="غلاف رواية هتون الحب" style="width: 100%; max-width: 400px; display: block; margin: 20px auto; border-radius: 0;">
 
-  <a href="https://ko-fi.com/s/2d6cc92f2c" target="_blank" class="button">📘 شراء الرواية الآن – 3 دولار</a>
-  <br><br>
-  <button class="button fav-btn" onclick="addToFavorites()">❤️ أضف إلى المفضلة</button>
-  <br><br>
-  <a href="index.html" class="button">↩ العودة للرئيسية</a>
+    <section>
+      <p>
+        رواية <strong>هتون الحب</strong> بقلم حسين الخليل، تسلط الضوء على قضايا الحب والزواج والخرافة وتضليل البسطاء باسم الدين والكرامات، بأسلوب قصصي معاصر يدمج بين التنوير والواقع الاجتماعي.
+      </p>
+      <p>
+        الرواية متوفرة للتحميل مجانًا:
+      </p>
+      <p style="text-align: center;">
+        <a href="books/hatoun.pdf" download class="button">تحميل الرواية PDF</a>
+      </p>
+    </section>
+  </main>
 
-  <script>
-    function addToFavorites() {
-      const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-      const item = "رواية هتون الحب - حسين الخليل";
-      if (!favorites.includes(item)) {
-        favorites.push(item);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        alert("تمت إضافة الرواية إلى المفضلة ❤️");
-      } else {
-        alert("الرواية موجودة بالفعل في المفضلة.");
-      }
-    }
-  </script>
+  <footer>
+    <p>&copy; 2025 حسين الخليل</p>
+  </footer>
 
 </body>
 </html>
