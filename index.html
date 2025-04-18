@@ -4,196 +4,141 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>حسين الخليل - الصفحة الرئيسية</title>
+  <title>حسين الخليل</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f5efff;
+      background-color: #f3ecff;
+      font-family: "Arial", sans-serif;
       margin: 0;
       padding: 0;
-      color: #2f003f;
     }
-
-    nav {
+    header {
       background-color: #5e2ca5;
-      padding: 1em;
-      text-align: center;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
-
-    nav a {
+    header nav a {
       color: white;
       text-decoration: none;
-      margin: 0 1em;
+      margin: 10px;
       font-weight: bold;
       font-size: 1.1em;
     }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 2em;
-      text-align: right;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .header img {
-      width: 100px;
-      height: 120px;
-      border-radius: 10px;
-      margin-left: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-
-    .intro-text {
-      flex-grow: 1;
-    }
-
-    .intro-text h2 {
-      margin: 0 0 10px 0;
-      font-size: 1.4em;
-      color: #5e2ca5;
-    }
-
-    .intro-text p {
-      margin: 0;
-      font-size: 1.1em;
-    }
-
-    .title {
+    .intro {
       text-align: center;
-      margin-top: 1em;
+      padding: 20px;
     }
-
-    .title h1 {
-      font-size: 2.2em;
+    .intro img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      float: right;
+      margin: 0 20px;
+    }
+    .intro h1 {
+      font-size: 1.5em;
+      color: #3c096c;
+      margin-top: 0;
+    }
+    .intro p {
+      color: #4a148c;
+      font-size: 1.2em;
+    }
+    .welcome {
+      text-align: center;
+      padding: 10px;
+    }
+    .welcome h2 {
+      font-size: 2em;
       color: #5e2ca5;
-      margin-bottom: 0.2em;
     }
-
-    .title h3 {
-      font-size: 1.4em;
-      font-weight: normal;
-      color: #4b007d;
+    .welcome p {
+      font-size: 1.2em;
     }
-
     .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5em;
-      padding: 2em;
-      max-width: 1100px;
-      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
     }
-
     .card {
       background-color: #faf4ff;
-      padding: 1.5em;
-      border-radius: 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 220px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease;
+      padding: 20px;
     }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
     .card img {
       width: 50px;
-      margin-bottom: 1em;
+      height: 50px;
+      margin-bottom: 10px;
     }
-
-    .card a {
-      display: block;
-      margin-top: 0.8em;
-      color: #5e2ca5;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .card a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 600px) {
-      .header {
-        flex-direction: column;
+    @media (max-width: 768px) {
+      header {
+        justify-content: center;
         text-align: center;
       }
-      .header img {
-        margin: 0 0 1em 0;
+      .intro img {
+        float: none;
+        display: block;
+        margin: 0 auto 10px auto;
       }
     }
   </style>
 </head>
 <body>
+  <header>
+    <nav>
+      <a href="#">الرئيسية</a>
+      <a href="#">عنّي</a>
+      <a href="#">الكتب</a>
+      <a href="#">مقالاتي</a>
+      <a href="#">فيديوهاتي</a>
+      <a href="#">اطرح سؤالك</a>
+      <a href="#">المفضلة</a>
+      <a href="#">الدعم</a>
+    </nav>
+  </header>
 
-  <!-- القائمة العلوية -->
-  <nav>
-    <a href="index.html">الرئيسية</a>
-    <a href="about.html">عني</a>
-    <a href="books.html">الكتب</a>
-    <a href="articles.html">مقالاتي</a>
-    <a href="videos.html">فيديوهاتي</a>
-    <a href="ask.html">اطرح سؤالك</a>
-    <a href="favorites.html">المفضلة</a>
-    <a href="support.html">الدعم</a>
-  </nav>
-
-  <!-- معلومات الكاتب -->
-  <div class="header">
-    <img src="img/profile.jpg" alt="صورة حسين الخليل">
-    <div class="intro-text">
-      <h2>حسين الخليل - أهلاً بك في موقعي الشخصي</h2>
-      <p>باحث في التنوير ونقد الموروث</p>
-    </div>
+  <div class="intro">
+    <img src="hussein.jpg" alt="حسين الخليل">
+    <h1>حسين الخليل - أهلاً بك في موقعي الشخصي</h1>
+    <p>باحث في التنوير ونقد الموروث</p>
   </div>
 
-  <!-- العنوان -->
-  <div class="title">
-    <h1>مرحباً بك</h1>
-    <h3>كل ما أشره لا أزعم فيه امتلاك الحقيقة المطلقة، ولا أُلزم به أحداً. غايتي أن أفتح نافذة للتفكير والتأمل.</h3>
+  <div class="welcome">
+    <h2>مرحباً بك</h2>
+    <p>كل ما أُشير له لا أزعم فيه امتلاك الحقيقة المطلقة، ولا أزعم به أحداً. غايتي أن أفتح نافذة للتفكير والتأمل.</p>
   </div>
 
-  <!-- مربعات الأقسام -->
   <div class="cards">
     <div class="card">
-      <img src="img/books.png" alt="الكتب">
-      <div>الكتب</div>
-      <a href="books.html">اذهب إلى الكتب</a>
+      <img src="https://img.icons8.com/ios-filled/50/help.png" alt="اطرح سؤالك">
+      <h3>اطرح سؤالك</h3>
+      <p><a href="#">اذهب إلى الأسئلة</a></p>
     </div>
     <div class="card">
-      <img src="img/articles.png" alt="المقالات">
-      <div>مقالاتي</div>
-      <a href="articles.html">اذهب إلى المقالات</a>
+      <img src="https://img.icons8.com/ios-filled/50/youtube-play.png" alt="فيديوهاتي">
+      <h3>فيديوهاتي</h3>
+      <p><a href="#">اذهب إلى الفيديوهات</a></p>
     </div>
     <div class="card">
-      <img src="img/videos.png" alt="فيديوهاتي">
-      <div>فيديوهاتي</div>
-      <a href="videos.html">اذهب إلى الفيديوهات</a>
+      <img src="https://img.icons8.com/ios-filled/50/read.png" alt="مقالاتي">
+      <h3>مقالاتي</h3>
+      <p><a href="#">اذهب إلى المقالات</a></p>
     </div>
     <div class="card">
-      <img src="img/questions.png" alt="اطرح سؤالك">
-      <div>اطرح سؤالك</div>
-      <a href="ask.html">اذهب إلى الأسئلة</a>
-    </div>
-    <div class="card">
-      <img src="img/favorite.png" alt="المفضلة">
-      <div>المفضلة</div>
-      <a href="favorites.html">اذهب إلى المفضلة</a>
-    </div>
-    <div class="card">
-      <img src="img/thoughts.png" alt="خواطر">
-      <div>خواطر</div>
-      <a href="thoughts.html">اذهب إلى الخواطر</a>
+      <img src="https://img.icons8.com/ios-filled/50/book.png" alt="الكتب">
+      <h3>الكتب</h3>
+      <p><a href="#">اذهب إلى الكتب</a></p>
     </div>
   </div>
-
 </body>
 </html>
