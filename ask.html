@@ -63,6 +63,21 @@
     button:hover {
       background-color: #4b2392;
     }
+
+    .favorite-button {
+      background-color: #6a0dad;
+      color: white;
+      font-size: 14px;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto 0;
+    }
+    .favorite-button:hover {
+      background-color: #4b0082;
+    }
   </style>
 </head>
 <body>
@@ -83,10 +98,10 @@
     <label for="question">اكتب سؤالك هنا:</label>
     <textarea id="question" name="question" rows="6" required></textarea>
 
-    <label for="privacy">هل ترغب أن يكون سؤالك سرياً؟</label>
+    <label for="privacy">هل ترغب أن يكون سؤالك مخفيًا؟</label>
     <select id="privacy" name="privacy">
       <option value="عام">لا، السؤال عام</option>
-      <option value="سري">نعم، أريده سرياً</option>
+      <option value="مخفي">نعم، أريده مخفيًا</option>
     </select>
 
     <label for="name">الاسم (اختياري):</label>
@@ -94,6 +109,22 @@
 
     <button type="submit">إرسال</button>
   </form>
+
+  <!-- زر المفضلة -->
+  <button class="favorite-button" onclick="addToFavorites('صفحة اطرح سؤالك')">⭐ أضف إلى المفضلة</button>
+
+  <script>
+    function addToFavorites(item) {
+      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      if (!favorites.includes(item)) {
+        favorites.push(item);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert("تمت إضافة العنصر إلى المفضلة!");
+      } else {
+        alert("العنصر موجود بالفعل في المفضلة.");
+      }
+    }
+  </script>
 
 </body>
 </html>
