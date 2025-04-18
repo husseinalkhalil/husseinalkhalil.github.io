@@ -100,8 +100,22 @@
         <img src="images/haton-cover.jpg" alt="غلاف رواية هتون الحب">
         <p>رواية تتناول الحب، الزواج، الخرافة، وتضليل البسطاء باسم الدين والكرامات.</p>
         <a class="download-link" href="https://ko-fi.com/s/4e4d4a438d" target="_blank">📘 تحميل أو شراء الرواية</a>
-        <button class="favorite-button">⭐ أضف إلى المفضلة</button>
+        <button class="favorite-button" onclick="addToFavorites('رواية هتون الحب')">⭐ أضف إلى المفضلة</button>
     </div>
+
+    <!-- كود جافاسكربت للمفضلة -->
+    <script>
+      function addToFavorites(item) {
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        if (!favorites.includes(item)) {
+          favorites.push(item);
+          localStorage.setItem("favorites", JSON.stringify(favorites));
+          alert("تمت إضافة العنصر إلى المفضلة!");
+        } else {
+          alert("العنصر موجود بالفعل في المفضلة.");
+        }
+      }
+    </script>
 
 </body>
 </html>
