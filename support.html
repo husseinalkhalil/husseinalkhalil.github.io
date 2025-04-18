@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>الدعم - حسين الخليل</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5efff;
+      color: #2f003f;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #5e2ca5;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1em;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      padding: 2em;
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h1 {
+      color: #5e2ca5;
+      margin-bottom: 1em;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.8;
+      margin-bottom: 2em;
+    }
+
+    .support-links a {
+      display: inline-block;
+      background-color: #6a0dad;
+      color: white;
+      padding: 12px 25px;
+      margin: 10px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .support-links a:hover {
+      background-color: #4b0082;
+    }
+
+    .favorite-button {
+      background-color: #ffcc00;
+      color: #2f003f;
+      font-size: 16px;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+
+    .favorite-button:hover {
+      background-color: #f5b800;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شريط التنقل -->
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="about.html">عني</a>
+    <a href="books.html">كتبي</a>
+    <a href="articles.html">مقالاتي</a>
+    <a href="videos.html">فيديوهاتي</a>
+    <a href="ask.html">اطرح سؤالك</a>
+    <a href="favorites.html">المفضلة</a>
+    <a href="support.html">الدعم</a>
+  </nav>
+
+  <!-- محتوى الصفحة -->
+  <div class="container">
+    <h1>شكرًا لدعمك ❤️</h1>
+    <p>يسعدني دعمك لمشروعي الفكري. أنا أقدّم هذا المحتوى التنويري مجانًا، لأنني أؤمن أن الفكر لا يجب أن يُباع. إذا أحببت ما أقدّمه، يمكنك دعمي من خلال إحدى الوسائل التالية:</p>
+
+    <div class="support-links">
+      <a href="https://ko-fi.com/husseinalkhalil" target="_blank">☕ دعم عبر Ko-fi</a>
+      <a href="https://paypal.me/HusseinAlkhalil" target="_blank">💳 دعم عبر PayPal</a>
+      <a href="https://patreon.com/hu1983" target="_blank">🎁 دعم عبر Patreon</a>
+    </div>
+
+    <button class="favorite-button" onclick="addToFavorites()">⭐ أضف إلى المفضلة</button>
+  </div>
+
+  <script>
+    function addToFavorites() {
+      const page = window.location.href;
+      let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+      if (!favorites.includes(page)) {
+        favorites.push(page);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        alert('تمت إضافة هذه الصفحة إلى المفضلة ⭐');
+      } else {
+        alert('هذه الصفحة موجودة بالفعل في المفضلة.');
+      }
+    }
+  </script>
+
+</body>
+</html>
