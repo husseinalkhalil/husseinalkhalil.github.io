@@ -52,6 +52,13 @@
     .button:hover {
       background-color: #4a208f;
     }
+    .fav-btn {
+      background-color: #ff4081;
+      margin-top: 20px;
+    }
+    .fav-btn:hover {
+      background-color: #e91e63;
+    }
   </style>
 </head>
 <body>
@@ -66,9 +73,26 @@
   <h1>رواية هتون الحب</h1>
   <p>بقلم <strong>حسين الخليل</strong>، رواية تتناول الحب، الزواج، الخرافة، وتضليل البسطاء باسم الدين والكرامات.</p>
   <img src="hatoun-cover.png" alt="غلاف رواية هتون الحب" class="cover">
+
   <a href="https://ko-fi.com/s/2d6cc92f2c" target="_blank" class="button">📘 شراء الرواية الآن – 3 دولار</a>
   <br><br>
+  <button class="button fav-btn" onclick="addToFavorites()">❤️ أضف إلى المفضلة</button>
+  <br><br>
   <a href="index.html" class="button">↩ العودة للرئيسية</a>
+
+  <script>
+    function addToFavorites() {
+      const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+      const item = "رواية هتون الحب - حسين الخليل";
+      if (!favorites.includes(item)) {
+        favorites.push(item);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert("تمت إضافة الرواية إلى المفضلة ❤️");
+      } else {
+        alert("الرواية موجودة بالفعل في المفضلة.");
+      }
+    }
+  </script>
 
 </body>
 </html>
