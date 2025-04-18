@@ -1,16 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>حسين الخليل</title>
+  <title>حسين الخليل - الصفحة الرئيسية</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f2ebf8;
-      color: #3e0066;
+      background-color: #f5efff;
       margin: 0;
       padding: 0;
+      color: #2f003f;
     }
 
     nav {
@@ -32,86 +33,108 @@
     }
 
     .header {
-      position: relative;
-      text-align: center;
-      padding-top: 2em;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 2em;
+      text-align: right;
+      max-width: 1100px;
+      margin: auto;
     }
 
-    .profile-img {
-      position: absolute;
-      top: 20px;
-      right: 20px;
+    .header img {
       width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      height: 120px;
+      border-radius: 10px;
+      margin-left: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
     .intro-text {
-      margin-top: 140px;
+      flex-grow: 1;
+    }
+
+    .intro-text h2 {
+      margin: 0 0 10px 0;
+      font-size: 1.4em;
+      color: #5e2ca5;
+    }
+
+    .intro-text p {
+      margin: 0;
       font-size: 1.1em;
-      color: #4a208f;
-      line-height: 1.8;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
     }
 
-    h1 {
-      font-size: 36px;
+    .title {
+      text-align: center;
+      margin-top: 1em;
+    }
+
+    .title h1 {
+      font-size: 2.2em;
       color: #5e2ca5;
+      margin-bottom: 0.2em;
     }
 
-    h2 {
-      font-size: 24px;
-      margin-bottom: 30px;
-      color: #3e0066;
+    .title h3 {
+      font-size: 1.4em;
+      font-weight: normal;
+      color: #4b007d;
     }
 
-    a.button {
-      display: inline-block;
-      background-color: #5e2ca5;
-      color: white;
-      padding: 1em 2em;
-      margin-top: 2em;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5em;
+      padding: 2em;
+      max-width: 1100px;
+      margin: auto;
     }
 
-    a.button:hover {
-      background-color: #4a208f;
-    }
-
-    .social {
-      background-color: #eee;
-      padding: 2em 1em;
-      margin-top: 4em;
+    .card {
+      background-color: #faf4ff;
+      padding: 1.5em;
+      border-radius: 12px;
       text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
     }
 
-    .social h3 {
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 50px;
       margin-bottom: 1em;
-      color: #5e2ca5;
     }
 
-    .social a {
-      margin: 0 10px;
+    .card a {
+      display: block;
+      margin-top: 0.8em;
       color: #5e2ca5;
       font-weight: bold;
       text-decoration: none;
     }
 
-    .social a:hover {
+    .card a:hover {
       text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .header img {
+        margin: 0 0 1em 0;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- شريط التنقل -->
+  <!-- القائمة العلوية -->
   <nav>
     <a href="index.html">الرئيسية</a>
     <a href="about.html">عني</a>
@@ -120,30 +143,56 @@
     <a href="videos.html">فيديوهاتي</a>
     <a href="ask.html">اطرح سؤالك</a>
     <a href="favorites.html">المفضلة</a>
-<a href="support.html">الدعم</a>
+    <a href="support.html">الدعم</a>
   </nav>
 
-  <!-- محتوى الصفحة -->
+  <!-- معلومات الكاتب -->
   <div class="header">
-    <img src="profile.png" alt="صورة حسين الخليل" class="profile-img" />
+    <img src="img/profile.jpg" alt="صورة حسين الخليل">
     <div class="intro-text">
-      <p><strong>باحث في التنوير ونقد الموروث</strong><br>
-      كل ما أنشره لا أزعم فيه امتلاك الحقيقة المطلقة، ولا أُلزم به أحد.<br>
-      غايتي أن أفتح نافذة للتفكير والتأمل.</p>
+      <h2>حسين الخليل - أهلاً بك في موقعي الشخصي</h2>
+      <p>باحث في التنوير ونقد الموروث</p>
     </div>
-    <h1>حسين الخليل</h1>
-    <h2>مرحبا بك في موقعي الشخصي</h2>
-    <a href="books.html" class="button">📚 تصفح الكتب</a>
   </div>
 
-  <!-- قسم المنصات -->
-  <div class="social">
-    <h3>تابعني على المنصات:</h3>
-    <a href="https://youtube.com/@husseinalkhalil" target="_blank">🎥 يوتيوب</a>
-    <a href="https://www.instagram.com/husseinalkhalil" target="_blank">📸 إنستغرام</a>
-    <a href="https://www.tiktok.com/@h.alkhalil" target="_blank">🎵 تيك توك</a>
-    <a href="https://www.facebook.com/hussien.alkhalil" target="_blank">📘 فيسبوك</a>
-    <a href="https://ko-fi.com/husseinalkhalil" target="_blank">☕ Ko-fi</a>
+  <!-- العنوان -->
+  <div class="title">
+    <h1>مرحباً بك</h1>
+    <h3>كل ما أشره لا أزعم فيه امتلاك الحقيقة المطلقة، ولا أُلزم به أحداً. غايتي أن أفتح نافذة للتفكير والتأمل.</h3>
+  </div>
+
+  <!-- مربعات الأقسام -->
+  <div class="cards">
+    <div class="card">
+      <img src="img/books.png" alt="الكتب">
+      <div>الكتب</div>
+      <a href="books.html">اذهب إلى الكتب</a>
+    </div>
+    <div class="card">
+      <img src="img/articles.png" alt="المقالات">
+      <div>مقالاتي</div>
+      <a href="articles.html">اذهب إلى المقالات</a>
+    </div>
+    <div class="card">
+      <img src="img/videos.png" alt="فيديوهاتي">
+      <div>فيديوهاتي</div>
+      <a href="videos.html">اذهب إلى الفيديوهات</a>
+    </div>
+    <div class="card">
+      <img src="img/questions.png" alt="اطرح سؤالك">
+      <div>اطرح سؤالك</div>
+      <a href="ask.html">اذهب إلى الأسئلة</a>
+    </div>
+    <div class="card">
+      <img src="img/favorite.png" alt="المفضلة">
+      <div>المفضلة</div>
+      <a href="favorites.html">اذهب إلى المفضلة</a>
+    </div>
+    <div class="card">
+      <img src="img/thoughts.png" alt="خواطر">
+      <div>خواطر</div>
+      <a href="thoughts.html">اذهب إلى الخواطر</a>
+    </div>
   </div>
 
 </body>
