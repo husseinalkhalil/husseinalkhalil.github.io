@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>المفضلة - حسين الخليل</title>
+  <style>
+    body {
+      font-family: Tahoma, sans-serif;
+      background-color: #f7f0ff;
+      color: #2e0854;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background-color: #5e2ca5;
+      padding: 15px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 30px;
+    }
+    h1 {
+      text-align: center;
+      color: #5e2ca5;
+    }
+    .favorite-item {
+      background-color: #fff;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .favorite-item button {
+      background-color: #c62828;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+      margin-top: 10px;
+    }
+    .favorite-item button:hover {
+      background-color: #a00000;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="about.html">عني</a>
+    <a href="books.html">الكتب</a>
+    <a href="articles.html">مقالاتي</a>
+    <a href="ask.html">اطرح سؤالك</a>
+    <a href="favorites.html">المفضلة</a>
+    <a href="support.html">الدعم</a>
+  </nav>
+
+  <div class="container">
+    <h1>مفضلتي</h1>
+    <p style="text-align:center;">هنا ستُعرض كل العناصر التي أضفتها للمفضلة من الموقع.</p>
+    <div id="favoritesList"></div>
+  </div>
+
+  <script>
+    function loadFavorites() {
+      const favoritesContainer = document.getElementById("favoritesList");
+      const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+      if (favorites.length === 0) {
+        favoritesContainer.innerHTML = "<p style='text-align:center;'>لم تقم بإضافة أي شيء إلى المفضلة بعد.</p>";
+        return;
+      }
+
+      favoritesContainer.innerHTML = "";
+
+      favorites.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "favorite-item";
+        div.innerHTML = `
+          <div>${item}</div>
+          <button onclick="removeFavorite(${index})">إلغاء المفضلة</button>
+        `;
+        favoritesContainer.appendChild(div);
+      });
+    }
+
+    function removeFavorite(index) {
+      const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+      favorites.splice(index, 1);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      loadFavorites();
+    }
+
+    loadFavorites();
+  </script>
+
+</body>
+</html>
