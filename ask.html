@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>اطرح سؤالك - حسين الخليل</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f3ff;
+      color: #2f003f;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #5e2ca5;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1em;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 2em;
+      text-align: center;
+    }
+
+    h1 {
+      color: #5e2ca5;
+      margin-bottom: 0.5em;
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 1em;
+      margin: 1em 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      resize: vertical;
+    }
+
+    .options {
+      text-align: right;
+      margin-bottom: 1em;
+    }
+
+    .options label {
+      display: block;
+      margin-bottom: 0.5em;
+      font-weight: bold;
+    }
+
+    .submit-button {
+      background-color: #5e2ca5;
+      color: white;
+      border: none;
+      padding: 1em 2em;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background-color: #4a208f;
+    }
+
+    .note {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: -10px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شريط التنقل -->
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="about.html">عني</a>
+    <a href="books.html">الكتب</a>
+    <a href="articles.html">مقالاتي</a>
+    <a href="ask.html">اطرح سؤالك</a>
+    <a href="https://ko-fi.com/husseinalkhalil" target="_blank">الدعم</a>
+  </nav>
+
+  <div class="container">
+    <h1>اطرح سؤالك</h1>
+    <p>يمكنك كتابة أي سؤال أو استفسار يخطر في بالك، وسأجيب عليه في أقرب وقت ممكن. 🌟</p>
+
+    <form>
+      <label for="question">✏️ سؤالك:</label>
+      <textarea id="question" name="question" rows="6" placeholder="اكتب سؤالك هنا..." required></textarea>
+
+      <div class="options">
+        <label>🔒 هل ترغب أن يكون سؤالك:</label>
+        <input type="radio" id="public" name="visibility" value="public" checked>
+        <label for="public">عام – يظهر للجميع</label><br>
+        <input type="radio" id="private" name="visibility" value="private">
+        <label for="private">سري – لا يظهر للزوار</label>
+      </div>
+
+      <label for="name">🧾 اسمك (اختياري):</label>
+      <input type="text" id="name" name="name" placeholder="يمكنك تركه فارغًا">
+
+      <button type="submit" class="submit-button">إرسال</button>
+    </form>
+
+    <p class="note">ملاحظة: الأسئلة العامة ستُعرض لاحقًا في صفحة خاصة مع الردود.</p>
+  </div>
+
+</body>
+</html>
