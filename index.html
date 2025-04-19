@@ -2,186 +2,200 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>حسين الخليل</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حسين الخليل - الصفحة الرئيسية</title>
   <style>
     body {
-      font-family: 'Cairo', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5efff;
       margin: 0;
-      background-color: #f7f2fc;
-      color: #3a1a68;
+      padding: 0;
+      color: #2f003f;
     }
-    .navbar {
+
+    nav {
       background-color: #5e2ca5;
-      padding: 15px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+      padding: 1em;
+      text-align: center;
     }
-    .navbar a {
+
+    nav a {
       color: white;
       text-decoration: none;
-      margin: 10px 15px;
+      margin: 0 1em;
       font-weight: bold;
-    }
-    .header {
-      text-align: center;
-      padding: 30px 20px 10px;
-      position: relative;
-    }
-    .header img {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 80px;
-      height: 80px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
-    .header h1 {
-      margin: 10px 0 5px;
-      font-size: 24px;
-      color: #3a1a68;
-    }
-    .header p {
-      margin: 0;
-      font-size: 16px;
-      color: #6a4ea3;
+      font-size: 1.1em;
     }
 
-    /* مربع البحث */
-    .search-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      margin-bottom: 20px;
+    nav a:hover {
+      text-decoration: underline;
     }
-    .search-box {
-      background-color: #faf4ff;
-      border: 1px solid #ccc;
-      border-radius: 25px;
-      padding: 10px 20px;
-      width: 300px;
+
+    .header {
       display: flex;
       align-items: center;
-    }
-    .search-box input {
-      border: none;
-      background: transparent;
-      outline: none;
-      width: 100%;
-      font-size: 14px;
-      color: #333;
-    }
-    .search-box i {
-      color: #5e2ca5;
-      margin-left: 8px;
+      justify-content: flex-end;
+      padding: 2em;
+      text-align: right;
+      max-width: 1100px;
+      margin: auto;
     }
 
-    .intro {
-      text-align: center;
-      margin: 20px;
-      font-size: 22px;
-      font-weight: bold;
+    .header img {
+      width: 100px;
+      height: 120px;
+      border-radius: 10px;
+      margin-left: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .intro-text {
+      flex-grow: 1;
+    }
+
+    .intro-text h2 {
+      margin: 0 0 10px 0;
+      font-size: 1.4em;
       color: #5e2ca5;
     }
-    .quote {
+
+    .intro-text p {
+      margin: 0;
+      font-size: 1.1em;
+    }
+
+    .title {
       text-align: center;
-      font-size: 16px;
-      margin-bottom: 30px;
+      margin-top: 1em;
     }
-    .grid {
+
+    .title h1 {
+      font-size: 2.2em;
+      color: #5e2ca5;
+      margin-bottom: 0.2em;
+    }
+
+    .title h3 {
+      font-size: 1.4em;
+      font-weight: normal;
+      color: #4b007d;
+    }
+
+    .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-      padding: 0 20px 40px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5em;
+      padding: 2em;
+      max-width: 1100px;
+      margin: auto;
     }
+
     .card {
       background-color: #faf4ff;
-      padding: 20px;
-      border-radius: 15px;
+      padding: 1.5em;
+      border-radius: 12px;
       text-align: center;
-      transition: transform 0.3s;
-      cursor: pointer;
-      border: 1px solid #e0d9f2;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
     }
+
     .card:hover {
       transform: translateY(-5px);
     }
-    .card i {
-      font-size: 30px;
-      margin-bottom: 10px;
-      color: #7a3dd4;
+
+    .card img {
+      width: 80px;
+      margin-bottom: 1em;
     }
-    .card h3 {
-      margin: 0;
-      font-size: 18px;
+
+    .card a {
+      display: block;
+      margin-top: 0.8em;
       color: #5e2ca5;
+      font-weight: bold;
+      text-decoration: none;
     }
-    .card p {
-      margin-top: 5px;
-      font-size: 14px;
-      color: #6a4ea3;
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .header img {
+        margin: 0 0 1em 0;
+      }
     }
   </style>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-  <div class="navbar">
-    <a href="#">الرئيسية</a>
-    <a href="#">عنّي</a>
-    <a href="#">الكتب</a>
-    <a href="#">مقالاتي</a>
-    <a href="#">فيديوهاتي</a>
-    <a href="#">اطرح سؤالك</a>
-    <a href="#">⭐ المفضلة</a>
-    <a href="#">الدعم</a>
-  </div>
+  <!-- القائمة العلوية -->
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="about.html">عني</a>
+    <a href="books.html">الكتب</a>
+    <a href="articles.html">مقالاتي</a>
+    <a href="videos.html">فيديوهاتي</a>
+    <a href="ask.html">اطرح سؤالك</a>
+    <a href="favorites.html">المفضلة⭐</a>
+    <a href="support.html">الدعم</a>
+  </nav>
 
+  <!-- معلومات الكاتب -->
   <div class="header">
-    <img src="your-image.jpg" alt="حسين الخليل" />
-    <h1>حسين الخليل - أهلاً بك في موقعي الشخصي</h1>
-    <p>باحث في التنوير ونقد الموروث</p>
-  </div>
-
-  <!-- مستطيل البحث -->
-  <div class="search-container">
-    <div class="search-box">
-      <input type="text" placeholder="ابحث في الموقع...">
-      <i class="fas fa-search"></i>
+    <img src="images/profile.png" alt="صورة حسين">
+    <div class="intro-text">
+      <h2>حسين الخليل - أهلاً بك في موقعي الشخصي</h2>
+      <p>باحث في التنوير ونقد الموروث</p>
     </div>
   </div>
 
-  <div class="intro">مرحباً بك</div>
-  <div class="quote">كل ما أنشره لا أزعم فيه امتلاك الحقيقة المطلقة، ولا أزعم به أحداً. غايتي أن أفتح نافذة للتفكير والتأمل.</div>
+  <!-- العنوان -->
+  <div class="title">
+    <h1>مرحباً بك</h1>
+    <h3>كل ما أنشره لا أزعم فيه امتلاك الحقيقة المطلقة، ولا أُلزم به أحداً. غايتي أن أفتح نافذة للتفكير والتأمل.</h3>
+  </div>
 
-  <div class="grid">
-    <div class="card" onclick="location.href='ask.html'">
-      <i class="fas fa-question-circle"></i>
-      <h3>اطرح سؤالك</h3>
-      <p>اذهب إلى الأسئلة</p>
+  <!-- مربعات الأقسام -->
+  <div class="cards">
+    <div class="card">
+      <img src="icons/books.png" alt="الكتب">
+      <div>الكتب</div>
+      <a href="books.html">اذهب إلى الكتب</a>
     </div>
-    <div class="card" onclick="location.href='videos.html'">
-      <i class="fas fa-play-circle"></i>
-      <h3>فيديوهاتي</h3>
-      <p>اذهب إلى الفيديوهات</p>
+    <div class="card">
+      <img src="icons/articles.png" alt="المقالات">
+      <div>مقالاتي</div>
+      <a href="articles.html">اذهب إلى المقالات</a>
     </div>
-    <div class="card" onclick="location.href='articles.html'">
-      <i class="fas fa-file-alt"></i>
-      <h3>مقالاتي</h3>
-      <p>اذهب إلى المقالات</p>
+    <div class="card">
+      <img src="icons/videos.png" alt="فيديوهاتي">
+      <div>فيديوهاتي</div>
+      <a href="videos.html">اذهب إلى الفيديوهات</a>
     </div>
-    <div class="card" onclick="location.href='books.html'">
-      <i class="fas fa-book"></i>
-      <h3>الكتب</h3>
-      <p>اذهب إلى الكتب</p>
+    <div class="card">
+      <img src="icons/ask.png" alt="اطرح سؤالك">
+      <div>اطرح سؤالك</div>
+      <a href="ask.html">اذهب إلى الأسئلة</a>
     </div>
-    <div class="card" onclick="location.href='thoughts.html'">
-      <i class="fas fa-lightbulb"></i>
-      <h3>خواطر</h3>
-      <p>اذهب إلى الخواطر</p>
+    <div class="card">
+      <img src="icons/favorites.png" alt="المفضلة">
+      <div>المفضلة</div>
+      <a href="favorites.html">اذهب إلى المفضلة</a>
+    </div>
+    <div class="card">
+      <img src="icons/khawatir.png" alt="خواطر">
+      <div>خواطر</div>
+      <a href="khawatir.html">اذهب إلى الخواطر</a>
+    </div>
+    <div class="card">
+      <img src="icons/support.png" alt="ادعمني">
+      <div>ادعمني</div>
+      <a href="support.html">اذهب إلى الدعم</a>
     </div>
   </div>
 
