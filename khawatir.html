@@ -73,10 +73,33 @@
       color: #a259ff;
       border: none;
       background: none;
+      position: relative;
     }
 
     .icon-btn:hover {
       opacity: 0.7;
+    }
+
+    .icon-btn::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #c89fff;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.8em;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    .icon-btn:hover::after {
+      opacity: 1;
     }
   </style>
 </head>
@@ -101,24 +124,24 @@
       <div class="thought-card" data-id="1">
         <div>لا تتنازل عن عقلك لأي سلطة، حتى لو لبست عباءة الدين.</div>
         <div class="icons">
-          <button class="icon-btn" onclick="toggleFavorite(1, this)">♥</button>
-          <button class="icon-btn" onclick="printThought(this)">🖨️</button>
+          <button class="icon-btn" data-tooltip="أضف إلى المفضلة" onclick="toggleFavorite(1, this)">♥</button>
+          <button class="icon-btn" data-tooltip="طباعة" onclick="printThought(this)">🖨️</button>
         </div>
       </div>
 
       <div class="thought-card" data-id="2">
         <div>الشجاعة الحقيقية هي أن تفكر، لا أن تتبع.</div>
         <div class="icons">
-          <button class="icon-btn" onclick="toggleFavorite(2, this)">♥</button>
-          <button class="icon-btn" onclick="printThought(this)">🖨️</button>
+          <button class="icon-btn" data-tooltip="أضف إلى المفضلة" onclick="toggleFavorite(2, this)">♥</button>
+          <button class="icon-btn" data-tooltip="طباعة" onclick="printThought(this)">🖨️</button>
         </div>
       </div>
 
       <div class="thought-card" data-id="3">
         <div>الأسئلة التي تحرّكك أهم من الأجوبة التي ترثها.</div>
         <div class="icons">
-          <button class="icon-btn" onclick="toggleFavorite(3, this)">♥</button>
-          <button class="icon-btn" onclick="printThought(this)">🖨️</button>
+          <button class="icon-btn" data-tooltip="أضف إلى المفضلة" onclick="toggleFavorite(3, this)">♥</button>
+          <button class="icon-btn" data-tooltip="طباعة" onclick="printThought(this)">🖨️</button>
         </div>
       </div>
     </div>
