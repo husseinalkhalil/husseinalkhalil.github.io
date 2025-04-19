@@ -98,8 +98,8 @@
       white-space: nowrap;
     }
 
-    .icon-btn:hover .tooltip.add,
-    .icon-btn:not(.favorited):hover .tooltip.add {
+    .icon-btn:hover .tooltip.add:not(.hide),
+    .icon-btn:not(.favorited):hover .tooltip.add:not(.hide) {
       visibility: visible;
       opacity: 1;
     }
@@ -180,17 +180,22 @@
     function toggleFavorite(id, btn) {
       const key = `thought-${id}`;
       const index = favorites.indexOf(key);
+      const tooltipAdd = btn.querySelector(".tooltip.add");
       const tooltipRemove = btn.querySelector(".tooltip.remove");
 
       if (index === -1) {
         favorites.push(key);
         btn.classList.add("favorited");
+        tooltipAdd.classList.add("hide");
       } else {
         favorites.splice(index, 1);
         btn.classList.remove("favorited");
-
         tooltipRemove.classList.add("show");
-        setTimeout(() => tooltipRemove.classList.remove("show"), 2000);
+        tooltipAdd.classList.remove("hide");
+
+        setTimeout(() => {
+          tooltipRemove.classList.remove("show");
+        }, 2000);
       }
 
       localStorage.setItem("favorites", JSON.stringify(favorites));
@@ -203,7 +208,9 @@
         const key = `thought-${id}`;
         if (favorites.includes(key)) {
           const btn = card.querySelector(".icon-btn");
+          const tooltipAdd = btn.querySelector(".tooltip.add");
           btn.classList.add("favorited");
+          tooltipAdd.classList.add("hide");
         }
       });
     };
