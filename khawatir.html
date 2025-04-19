@@ -58,21 +58,22 @@
       font-size: 1.2em;
     }
 
-    .favorite-icon {
+    .icon-button {
       position: absolute;
-      left: 10px;
       top: 10px;
       font-size: 1.4em;
-      color: #aaa;
       cursor: pointer;
       transition: color 0.3s ease;
+      padding: 5px;
+      border-radius: 6px;
+      color: #a678e2;
     }
 
-    .favorite-icon:hover {
-      color: #e60073;
+    .icon-button:hover {
+      color: #7a41c4;
     }
 
-    .favorite-icon::after {
+    .icon-button::after {
       content: attr(title);
       position: absolute;
       bottom: 125%;
@@ -87,10 +88,19 @@
       white-space: nowrap;
       pointer-events: none;
       transition: opacity 0.2s ease;
+      z-index: 10;
     }
 
-    .favorite-icon:hover::after {
+    .icon-button:hover::after {
       opacity: 1;
+    }
+
+    .favorite-icon {
+      left: 10px;
+    }
+
+    .print-icon {
+      left: 40px;
     }
 
   </style>
@@ -114,15 +124,18 @@
 
     <div class="thoughts">
       <div class="thought-card" data-id="1">
-        <span class="favorite-icon" title="أضف إلى المفضلة" onclick="addToFavorites('thought', 1)">♥</span>
+        <span class="icon-button favorite-icon" title="أضف إلى المفضلة" onclick="addToFavorites('thought', 1)">♥</span>
+        <span class="icon-button print-icon" title="طباعة" onclick="printThought(this)">🖨️</span>
         لا تتنازل عن عقلك لأي سلطة، حتى لو لبست عباءة الدين.
       </div>
       <div class="thought-card" data-id="2">
-        <span class="favorite-icon" title="أضف إلى المفضلة" onclick="addToFavorites('thought', 2)">♥</span>
+        <span class="icon-button favorite-icon" title="أضف إلى المفضلة" onclick="addToFavorites('thought', 2)">♥</span>
+        <span class="icon-button print-icon" title="طباعة" onclick="printThought(this)">🖨️</span>
         الشجاعة الحقيقية هي أن تفكر، لا أن تتبع.
       </div>
       <div class="thought-card" data-id="3">
-        <span class="favorite-icon" title="أضف إلى المفضلة" onclick="addToFavorites('thought', 3)">♥</span>
+        <span class="icon-button favorite-icon" title="أضف إلى المفضلة" onclick="addToFavorites('thought', 3)">♥</span>
+        <span class="icon-button print-icon" title="طباعة" onclick="printThought(this)">🖨️</span>
         الأسئلة التي تحرّكك أهم من الأجوبة التي ترثها.
       </div>
     </div>
@@ -139,6 +152,26 @@
       } else {
         alert("المحتوى موجود بالفعل في المفضلة.");
       }
+    }
+
+    function printThought(element) {
+      const thought = element.closest('.thought-card').innerText;
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>طباعة الخاطرة</title>
+            <style>
+              body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; direction: rtl; padding: 40px; line-height: 1.8; font-size: 1.4em; color: #2f003f; }
+            </style>
+          </head>
+          <body>
+            <p>${thought.replace(/[\n\r]/g, '<br>')}</p>
+            <script>window.onload = function() { window.print(); }</script>
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
     }
   </script>
 </body>
