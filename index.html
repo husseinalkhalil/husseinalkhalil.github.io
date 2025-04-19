@@ -28,10 +28,34 @@
       margin: 0 1em;
       font-weight: bold;
       font-size: 1.1em;
+      position: relative;
     }
 
     nav a:hover {
       text-decoration: underline;
+    }
+
+    /* تولتيب (Tooltip) */
+    .tooltip::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: 120%;
+      right: 50%;
+      transform: translateX(50%);
+      background-color: #5e2ca5;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      font-size: 0.9em;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+    }
+
+    .tooltip:hover::after {
+      opacity: 1;
     }
 
     .search-container {
@@ -207,8 +231,8 @@
     <a href="ask.html">اطرح سؤالك</a>
     <a href="favorites.html">المفضلة⭐</a>
     <a href="support.html">الدعم</a>
-    <!-- زر الطباعة -->
-    <a href="#" style="margin-right: 2em;" onclick="window.print()">🖨️ </a>
+    <!-- أيقونة الطباعة مع تولتيب -->
+    <a href="#" class="tooltip" data-tooltip="طباعة الصفحة" style="margin-right: 2em;" onclick="window.print()">🖨️</a>
   </nav>
 
   <!-- مستطيل البحث -->
