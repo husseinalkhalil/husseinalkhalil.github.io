@@ -56,53 +56,28 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       position: relative;
       font-size: 1.2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .icon-button {
-      position: absolute;
-      top: 10px;
-      font-size: 1.4em;
+    .icons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .icon-btn {
       cursor: pointer;
-      transition: color 0.3s ease;
-      padding: 5px;
-      border-radius: 6px;
-      color: #a678e2;
+      font-size: 1.4em;
+      color: #a259ff;
+      border: none;
+      background: none;
     }
 
-    .icon-button:hover {
-      color: #7a41c4;
+    .icon-btn:hover {
+      opacity: 0.7;
     }
-
-    .icon-button::after {
-      content: attr(title);
-      position: absolute;
-      bottom: 125%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #a678e2;
-      color: #fff;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 0.8em;
-      opacity: 0;
-      white-space: nowrap;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
-      z-index: 10;
-    }
-
-    .icon-button:hover::after {
-      opacity: 1;
-    }
-
-    .favorite-icon {
-      left: 10px;
-    }
-
-    .print-icon {
-      left: 40px;
-    }
-
   </style>
 </head>
 <body>
@@ -122,57 +97,62 @@
   <div class="container">
     <h1>خواطر</h1>
 
-    <div class="thoughts">
+    <div class="thoughts" id="thoughts-container">
       <div class="thought-card" data-id="1">
-        <span class="icon-button favorite-icon" title="أضف إلى المفضلة" onclick="addToFavorites('thought', 1)">♥</span>
-        <span class="icon-button print-icon" title="طباعة" onclick="printThought(this)">🖨️</span>
-        لا تتنازل عن عقلك لأي سلطة، حتى لو لبست عباءة الدين.
+        <div>لا تتنازل عن عقلك لأي سلطة، حتى لو لبست عباءة الدين.</div>
+        <div class="icons">
+          <button class="icon-btn" onclick="toggleFavorite(1, this)">♥</button>
+          <button class="icon-btn" onclick="printThought(this)">🖨️</button>
+        </div>
       </div>
+
       <div class="thought-card" data-id="2">
-        <span class="icon-button favorite-icon" title="أضف إلى المفضلة" onclick="addToFavorites('thought', 2)">♥</span>
-        <span class="icon-button print-icon" title="طباعة" onclick="printThought(this)">🖨️</span>
-        الشجاعة الحقيقية هي أن تفكر، لا أن تتبع.
+        <div>الشجاعة الحقيقية هي أن تفكر، لا أن تتبع.</div>
+        <div class="icons">
+          <button class="icon-btn" onclick="toggleFavorite(2, this)">♥</button>
+          <button class="icon-btn" onclick="printThought(this)">🖨️</button>
+        </div>
       </div>
+
       <div class="thought-card" data-id="3">
-        <span class="icon-button favorite-icon" title="أضف إلى المفضلة" onclick="addToFavorites('thought', 3)">♥</span>
-        <span class="icon-button print-icon" title="طباعة" onclick="printThought(this)">🖨️</span>
-        الأسئلة التي تحرّكك أهم من الأجوبة التي ترثها.
+        <div>الأسئلة التي تحرّكك أهم من الأجوبة التي ترثها.</div>
+        <div class="icons">
+          <button class="icon-btn" onclick="toggleFavorite(3, this)">♥</button>
+          <button class="icon-btn" onclick="printThought(this)">🖨️</button>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    function addToFavorites(type, id) {
-      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-      const itemKey = `${type}-${id}`;
-      if (!favorites.includes(itemKey)) {
-        favorites.push(itemKey);
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    function toggleFavorite(id, btn) {
+      const key = `thought-${id}`;
+      const index = favorites.indexOf(key);
+      if (index === -1) {
+        favorites.push(key);
         localStorage.setItem("favorites", JSON.stringify(favorites));
         alert("تمت الإضافة إلى المفضلة!");
       } else {
-        alert("المحتوى موجود بالفعل في المفضلة.");
+        favorites.splice(index, 1);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert("تمت الإزالة من المفضلة.");
       }
     }
 
-    function printThought(element) {
-      const thought = element.closest('.thought-card').innerText;
-      const printWindow = window.open('', '_blank');
+    function printThought(button) {
+      const card = button.closest(".thought-card");
+      const text = card.querySelector("div").innerText;
+      const printWindow = window.open('', '', 'width=600,height=400');
       printWindow.document.write(`
-        <html>
-          <head>
-            <title>طباعة الخاطرة</title>
-            <style>
-              body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; direction: rtl; padding: 40px; line-height: 1.8; font-size: 1.4em; color: #2f003f; }
-            </style>
-          </head>
-          <body>
-            <p>${thought.replace(/[\n\r]/g, '<br>')}</p>
-            <script>window.onload = function() { window.print(); }</script>
-          </body>
-        </html>
+        <html dir="rtl"><head><title>طباعة</title></head><body style="font-family: sans-serif; padding: 2em;">
+        <p>${text}</p>
+        <script>setTimeout(() => { window.print(); window.close(); }, 500);<\/script>
+        </body></html>
       `);
-      printWindow.document.close();
     }
   </script>
+
 </body>
 </html>
