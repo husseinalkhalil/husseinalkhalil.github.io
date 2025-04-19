@@ -1,292 +1,198 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>حسين الخليل - الصفحة الرئيسية</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حسين الخليل</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f5efff;
       margin: 0;
-      padding: 0;
-      color: #2f003f;
-      overflow-x: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f1fb;
     }
 
-    nav {
-      background-color: #5e2ca5;
-      padding: 1em;
-      text-align: center;
-      position: relative;
-      z-index: 1;
+    .navbar {
+      background-color: #6a0dad;
+      color: white;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: background-color 0.3s ease;
     }
 
-    nav a {
+    .navbar.transparent {
+      background-color: rgba(106, 13, 173, 0.85);
+      backdrop-filter: blur(5px);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .nav-links a {
       color: white;
       text-decoration: none;
-      margin: 0 1em;
       font-weight: bold;
-      font-size: 1.1em;
+      font-size: 18px;
     }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .search-container {
-      direction: rtl;
-      max-width: 1100px;
-      margin: 1em auto 0 auto;
-      text-align: left;
-      padding: 0 2em;
-      position: relative;
-      z-index: 1;
-    }
-
-    .search-container input[type="text"] {
-      padding: 0.8em 1em;
-      width: 250px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-      background-color: #faf4ff;
-      color: #4b007d;
-    }
-
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 2em;
-      text-align: right;
-      max-width: 1100px;
-      margin: auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .header img {
-      width: 100px;
-      height: 120px;
-      border-radius: 10px;
-      margin-left: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-
-    .intro-text {
-      flex-grow: 1;
-    }
-
-    .intro-text h2 {
-      margin: 0 0 10px 0;
-      font-size: 1.4em;
-      color: #5e2ca5;
-    }
-
-    .intro-text p {
-      margin: 0;
-      font-size: 1.1em;
-    }
-
-    .title {
-      text-align: center;
-      margin-top: 1em;
-      position: relative;
-      z-index: 1;
-    }
-
-    .title h1 {
-      font-size: 2.2em;
-      color: #5e2ca5;
-      margin-bottom: 0.2em;
-    }
-
-    .title h3 {
-      font-size: 1.4em;
-      font-weight: normal;
-      color: #4b007d;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5em;
-      padding: 2em;
-      max-width: 1100px;
-      margin: auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .card {
-      background-color: #faf4ff;
-      padding: 1.5em;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card img {
-      width: 80px;
-      margin-bottom: 1em;
-    }
-
-    .card a {
-      display: block;
-      margin-top: 0.8em;
-      color: #5e2ca5;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .card a:hover {
-      text-decoration: underline;
-    }
-
-    .share-button {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 999;
-    }
-
-    .share-button img {
-      width: 40px;
-      height: 40px;
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
       cursor: pointer;
     }
 
-    @media (max-width: 600px) {
-      .header {
-        flex-direction: column;
-        text-align: center;
-      }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: rgba(106, 13, 173, 0.95);
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 100%;
+      text-align: center;
+      animation: slideDown 0.4s ease-out;
+    }
 
-      .header img {
-        margin: 0 0 1em 0;
-      }
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
 
-      .search-container {
-        text-align: center;
+    .mobile-menu a {
+      padding: 15px;
+      border-top: 1px solid #fff;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
       }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    .search-bar {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .search-bar input {
+      width: 80%;
+      max-width: 400px;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero img {
+      width: 130px;
+      height: 130px;
+      border-radius: 20px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero h1 {
+      margin: 15px 0 5px;
+      font-size: 22px;
+      color: #6a0dad;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .section {
+      padding: 25px 20px;
+      text-align: center;
+    }
+
+    .section h2 {
+      color: #6a0dad;
+      font-size: 26px;
+    }
+
+    .section p {
+      font-size: 18px;
+      color: #333;
+      line-height: 1.7;
     }
   </style>
 </head>
 <body>
 
-  <!-- زر المشاركة -->
-  <div class="share-button">
-    <img src="images/share.png" alt="مشاركة" onclick="toggleShareMenu()" />
-    <div id="share-menu" style="display:none; background:#fff; border:1px solid #ccc; padding:10px; border-radius:8px; position:absolute; top:50px; left:0; width:180px; box-shadow:0 0 10px rgba(0,0,0,0.2);">
-      <div style="margin-bottom:10px; cursor:pointer; color:#5e2ca5;" onclick="copyLink()">📋 نسخ الرابط</div>
-      <div style="display:flex; justify-content:space-between; flex-wrap: wrap; gap: 10px;">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://husseinalkhalil.github.io" target="_blank"><img src="icons/facebook.png" width="32" title="فيسبوك" /></a>
-        <a href="https://api.whatsapp.com/send?text=https://husseinalkhalil.github.io" target="_blank"><img src="icons/whatsapp.png" width="32" title="واتساب" /></a>
-        <a href="https://t.me/share/url?url=https://husseinalkhalil.github.io" target="_blank"><img src="icons/telegram.png" width="32" title="تلغرام" /></a>
-        <a href="https://x.com/intent/tweet?url=https://husseinalkhalil.github.io" target="_blank"><img src="icons/x.png" width="32" title="تويتر/X" /></a>
-        <a href="https://www.instagram.com/" target="_blank"><img src="icons/instagram.png" width="32" title="إنستغرام" /></a>
-        <a href="https://www.tiktok.com/" target="_blank"><img src="icons/tiktok.png" width="32" title="تيك توك" /></a>
-        <a href="https://www.youtube.com/" target="_blank"><img src="icons/youtube.png" width="32" title="يوتيوب" /></a>
-      </div>
+  <div class="navbar" id="navbar">
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    <div class="nav-links">
+      <a href="#">الرئيسية</a>
+      <a href="#">عني</a>
+      <a href="#">الكتب</a>
+      <a href="#">فيديوهاتي</a>
+      <a href="#">اطرح سؤالك</a>
+      <a href="#">مقالاتي</a>
+      <a href="#">المفضلة ⭐</a>
+      <a href="#">الدعم</a>
     </div>
   </div>
 
-  <!-- القائمة العلوية -->
-  <nav>
-    <a href="index.html">الرئيسية</a>
-    <a href="about.html">عني</a>
-    <a href="books.html">الكتب</a>
-    <a href="articles.html">مقالاتي</a>
-    <a href="videos.html">فيديوهاتي</a>
-    <a href="ask.html">اطرح سؤالك</a>
-    <a href="favorites.html">المفضلة⭐</a>
-    <a href="support.html">الدعم</a>
-  </nav>
-
-  <!-- مستطيل البحث -->
-  <div class="search-container">
-    <input type="text" placeholder="ابحث في الموقع..." />
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">الرئيسية</a>
+    <a href="#">عني</a>
+    <a href="#">الكتب</a>
+    <a href="#">فيديوهاتي</a>
+    <a href="#">اطرح سؤالك</a>
+    <a href="#">مقالاتي</a>
+    <a href="#">المفضلة ⭐</a>
+    <a href="#">الدعم</a>
   </div>
 
-  <!-- معلومات الكاتب -->
-  <div class="header">
-    <img src="images/profile.png" alt="صورة حسين">
-    <div class="intro-text">
-      <h2>حسين الخليل - أهلاً بك في موقعي الشخصي</h2>
-      <p>باحث في التنوير ونقد الموروث</p>
-    </div>
+  <div class="search-bar">
+    <input type="text" placeholder="ابحث في الموقع...">
   </div>
 
-  <!-- العنوان -->
-  <div class="title">
-    <h1>مرحباً بك</h1>
-    <h3>كل ما أنشره لا أزعم فيه امتلاك الحقيقة المطلقة، ولا أُلزم به أحداً. غايتي أن أفتح نافذة للتفكير والتأمل.</h3>
+  <div class="hero">
+    <img src="hussein.jpg" alt="صورة حسين الخليل">
+    <h1>حسين الخليل - أهلًا بك في موقعي الشخصي</h1>
+    <p>باحث في التنوير ونقد الموروث</p>
   </div>
 
-  <!-- مربعات الأقسام -->
-  <div class="cards">
-    <div class="card" onclick="location.href='books.html'">
-      <img src="icons/books.png" alt="الكتب">
-      <div>الكتب</div>
-      <a href="books.html">اذهب إلى الكتب</a>
-    </div>
-    <div class="card" onclick="location.href='articles.html'">
-      <img src="icons/articles.png" alt="المقالات">
-      <div>مقالاتي</div>
-      <a href="articles.html">اذهب إلى المقالات</a>
-    </div>
-    <div class="card" onclick="location.href='videos.html'">
-      <img src="icons/videos.png" alt="فيديوهاتي">
-      <div>فيديوهاتي</div>
-      <a href="videos.html">اذهب إلى الفيديوهات</a>
-    </div>
-    <div class="card" onclick="location.href='ask.html'">
-      <img src="icons/ask.png" alt="اطرح سؤالك">
-      <div>اطرح سؤالك</div>
-      <a href="ask.html">اذهب إلى الأسئلة</a>
-    </div>
-    <div class="card" onclick="location.href='favorites.html'">
-      <img src="icons/favorites.png" alt="المفضلة">
-      <div>المفضلة</div>
-      <a href="favorites.html">اذهب إلى المفضلة</a>
-    </div>
-    <div class="card" onclick="location.href='khawatir.html'">
-      <img src="icons/khawatir.png" alt="خواطر">
-      <div>خواطر</div>
-      <a href="khawatir.html">اذهب إلى الخواطر</a>
-    </div>
-    <div class="card" onclick="location.href='support.html'">
-      <img src="icons/support.png" alt="ادعمني">
-      <div>ادعمني</div>
-      <a href="support.html">اذهب إلى الدعم</a>
-    </div>
+  <div class="section">
+    <h2>مرحبًا بك</h2>
+    <p>
+      كل ما أنشره لا أزعم فيه امتلاك الحقيقة المطلقة، ولا ألزم به أحداً. غايتي أن أفتح نافذة للتفكير والتأمل.
+    </p>
   </div>
 
-  <!-- سكريبتات المشاركة -->
   <script>
-    function toggleShareMenu() {
-      const menu = document.getElementById("share-menu");
-      menu.style.display = (menu.style.display === "none") ? "block" : "none";
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
     }
 
-    function copyLink() {
-      const link = "https://husseinalkhalil.github.io";
-      navigator.clipboard.writeText(link).then(() => {
-        alert("تم نسخ الرابط!");
-      });
-    }
-
-    window.addEventListener("click", function(e) {
-      const menu = document.getElementById("share-menu");
-      const button = document.querySelector(".share-button img");
-      if (!menu.contains(e.target) && e.target !== button) {
-        menu.style.display = "none";
+    window.addEventListener('scroll', function () {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 20) {
+        navbar.classList.add('transparent');
+      } else {
+        navbar.classList.remove('transparent');
       }
     });
   </script>
