@@ -35,8 +35,9 @@
       max-width: 1100px;
       margin: 1em auto 0 auto;
       display: flex;
-      justify-content: flex-start;
+      justify-content: flex-end; /* نحط البحث عاليسار في RTL */
       padding: 0 2em;
+      direction: ltr; /* عشان يظهر المستطيل من اليسار */
     }
 
     .search-bar input[type="text"] {
@@ -45,6 +46,7 @@
       border-radius: 8px;
       border: 1px solid #ccc;
       font-size: 1em;
+      text-align: left;
     }
 
     .header {
