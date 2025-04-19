@@ -77,16 +77,16 @@
     }
 
     .icon-btn.favorited {
-      color: #6a1b9a;
+      color: #5e2ca5;
     }
 
     .tooltip {
       visibility: hidden;
-      background-color: #a259ff;
+      background-color: #5e2ca5;
       color: #fff;
       text-align: center;
-      border-radius: 5px;
       padding: 5px 8px;
+      border-radius: 6px;
       position: absolute;
       z-index: 1;
       bottom: 125%;
@@ -94,17 +94,11 @@
       transform: translateX(-50%);
       opacity: 0;
       transition: opacity 0.3s;
-      font-size: 0.8em;
       white-space: nowrap;
+      font-size: 0.9em;
     }
 
-    .icon-btn:hover .tooltip.add:not(.hide),
-    .icon-btn:not(.favorited):hover .tooltip.add:not(.hide) {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    .tooltip.remove.show {
+    .icon-btn:hover .tooltip {
       visibility: visible;
       opacity: 1;
     }
@@ -112,6 +106,7 @@
 </head>
 <body>
 
+  <!-- القائمة العلوية -->
   <nav>
     <a href="index.html">الرئيسية</a>
     <a href="about.html">عني</a>
@@ -130,14 +125,13 @@
       <div class="thought-card" data-id="1">
         <div>لا تتنازل عن عقلك لأي سلطة، حتى لو لبست عباءة الدين.</div>
         <div class="icons">
-          <button class="icon-btn" onclick="toggleFavorite(1, this)">
+          <button class="icon-btn favorite-btn" onclick="toggleFavorite(1, this)">
             ♥
-            <span class="tooltip add">أضف إلى المفضلة</span>
-            <span class="tooltip remove">تمت الإزالة من المفضلة</span>
+            <span class="tooltip">أضف إلى المفضلة</span>
           </button>
-          <button class="icon-btn">
+          <button class="icon-btn print-btn">
             🖨️
-            <span class="tooltip add">طباعة</span>
+            <span class="tooltip">طباعة</span>
           </button>
         </div>
       </div>
@@ -145,14 +139,13 @@
       <div class="thought-card" data-id="2">
         <div>الشجاعة الحقيقية هي أن تفكر، لا أن تتبع.</div>
         <div class="icons">
-          <button class="icon-btn" onclick="toggleFavorite(2, this)">
+          <button class="icon-btn favorite-btn" onclick="toggleFavorite(2, this)">
             ♥
-            <span class="tooltip add">أضف إلى المفضلة</span>
-            <span class="tooltip remove">تمت الإزالة من المفضلة</span>
+            <span class="tooltip">أضف إلى المفضلة</span>
           </button>
-          <button class="icon-btn">
+          <button class="icon-btn print-btn">
             🖨️
-            <span class="tooltip add">طباعة</span>
+            <span class="tooltip">طباعة</span>
           </button>
         </div>
       </div>
@@ -160,14 +153,13 @@
       <div class="thought-card" data-id="3">
         <div>الأسئلة التي تحرّكك أهم من الأجوبة التي ترثها.</div>
         <div class="icons">
-          <button class="icon-btn" onclick="toggleFavorite(3, this)">
+          <button class="icon-btn favorite-btn" onclick="toggleFavorite(3, this)">
             ♥
-            <span class="tooltip add">أضف إلى المفضلة</span>
-            <span class="tooltip remove">تمت الإزالة من المفضلة</span>
+            <span class="tooltip">أضف إلى المفضلة</span>
           </button>
-          <button class="icon-btn">
+          <button class="icon-btn print-btn">
             🖨️
-            <span class="tooltip add">طباعة</span>
+            <span class="tooltip">طباعة</span>
           </button>
         </div>
       </div>
@@ -177,43 +169,73 @@
   <script>
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
+    document.querySelectorAll(".thought-card").forEach(card => {
+      const id = card.dataset.id;
+      const favBtn = card.querySelector(".favorite-btn");
+      const tooltip = favBtn.querySelector(".tooltip");
+      const key = `thought-${id}`;
+
+      if (favorites.includes(key)) {
+        favBtn.classList.add("favorited");
+        tooltip.style.display = "none";
+      }
+    });
+
     function toggleFavorite(id, btn) {
       const key = `thought-${id}`;
-      const index = favorites.indexOf(key);
-      const tooltipAdd = btn.querySelector(".tooltip.add");
-      const tooltipRemove = btn.querySelector(".tooltip.remove");
+      const tooltip = btn.querySelector(".tooltip");
 
+      const index = favorites.indexOf(key);
       if (index === -1) {
         favorites.push(key);
         btn.classList.add("favorited");
-        tooltipAdd.classList.add("hide");
+        tooltip.style.display = "none";
       } else {
         favorites.splice(index, 1);
         btn.classList.remove("favorited");
-        tooltipRemove.classList.add("show");
-        tooltipAdd.classList.remove("hide");
-
+        tooltip.textContent = "تمت الإزالة من المفضلة";
+        tooltip.style.display = "block";
         setTimeout(() => {
-          tooltipRemove.classList.remove("show");
+          tooltip.style.display = "none";
+          tooltip.textContent = "أضف إلى المفضلة";
         }, 2000);
       }
-
       localStorage.setItem("favorites", JSON.stringify(favorites));
     }
 
-    // تحميل الحالات المحفوظة عند فتح الصفحة
-    window.onload = function () {
-      document.querySelectorAll(".thought-card").forEach(card => {
-        const id = card.getAttribute("data-id");
-        const key = `thought-${id}`;
-        if (favorites.includes(key)) {
-          const btn = card.querySelector(".icon-btn");
-          const tooltipAdd = btn.querySelector(".tooltip.add");
-          btn.classList.add("favorited");
-          tooltipAdd.classList.add("hide");
-        }
+    document.querySelectorAll(".print-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const card = btn.closest(".thought-card");
+        const text = card.querySelector("div").innerText;
+
+        const printWindow = window.open("", "_blank");
+        printWindow.document.write(`
+          <html>
+          <head>
+            <title>طباعة الخاطرة</title>
+            <style>
+              body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                direction: rtl;
+                text-align: right;
+                padding: 40px;
+                color: #2f003f;
+                font-size: 20px;
+              }
+            </style>
+          </head>
+          <body>
+            ${text}
+          </body>
+          </html>
+        `);
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
       });
-    };
+    });
   </script>
+
 </body>
 </html>
