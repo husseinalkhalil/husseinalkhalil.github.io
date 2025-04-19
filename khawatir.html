@@ -54,12 +54,12 @@
       border-radius: 10px;
       padding: 1.5em;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      position: relative;
       font-size: 1.2em;
+      position: relative;
     }
 
     .buttons {
-      margin-top: 10px;
+      margin-top: 15px;
       display: flex;
       gap: 10px;
       justify-content: flex-start;
@@ -69,7 +69,7 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
-      font-size: 1.2em;
+      font-size: 1.3em;
       color: #5e2ca5;
       position: relative;
     }
@@ -99,7 +99,6 @@
     .icon-btn:hover::after {
       opacity: 1;
     }
-
   </style>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
@@ -124,7 +123,7 @@
       <div class="thought-card" data-id="1">
         لا تتنازل عن عقلك لأي سلطة، حتى لو لبست عباءة الدين.
         <div class="buttons">
-          <button class="icon-btn" data-tooltip="أضف أو أزل من المفضلة" onclick="toggleFavorite(1, this)">
+          <button class="icon-btn" data-tooltip="أضف إلى المفضلة" onclick="toggleFavorite(1, this)">
             <i class="fa-solid fa-heart"></i>
           </button>
           <button class="icon-btn" data-tooltip="طباعة الخاطرة" onclick="printThought(this)">
@@ -136,7 +135,7 @@
       <div class="thought-card" data-id="2">
         الشجاعة الحقيقية هي أن تفكر، لا أن تتبع.
         <div class="buttons">
-          <button class="icon-btn" data-tooltip="أضف أو أزل من المفضلة" onclick="toggleFavorite(2, this)">
+          <button class="icon-btn" data-tooltip="أضف إلى المفضلة" onclick="toggleFavorite(2, this)">
             <i class="fa-solid fa-heart"></i>
           </button>
           <button class="icon-btn" data-tooltip="طباعة الخاطرة" onclick="printThought(this)">
@@ -148,7 +147,7 @@
       <div class="thought-card" data-id="3">
         الأسئلة التي تحرّكك أهم من الأجوبة التي ترثها.
         <div class="buttons">
-          <button class="icon-btn" data-tooltip="أضف أو أزل من المفضلة" onclick="toggleFavorite(3, this)">
+          <button class="icon-btn" data-tooltip="أضف إلى المفضلة" onclick="toggleFavorite(3, this)">
             <i class="fa-solid fa-heart"></i>
           </button>
           <button class="icon-btn" data-tooltip="طباعة الخاطرة" onclick="printThought(this)">
@@ -160,43 +159,44 @@
   </div>
 
   <script>
-    // طباعة الخاطرة
-    function printThought(button) {
-      const thought = button.closest('.thought-card').innerText.trim();
-      const printWindow = window.open('', '', 'height=500,width=700');
-      printWindow.document.write('<html><head><title>طباعة الخاطرة</title></head><body style="direction: rtl; font-family: Arial;">');
-      printWindow.document.write('<p>' + thought + '</p>');
-      printWindow.document.write('</body></html>');
-      printWindow.document.close();
-      printWindow.print();
-    }
-
-    // مفضلة
     function toggleFavorite(id, btn) {
       let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
       const key = `thought-${id}`;
-      const index = favorites.indexOf(key);
+      const icon = btn.querySelector("i");
 
+      const index = favorites.indexOf(key);
       if (index === -1) {
         favorites.push(key);
-        btn.querySelector('i').style.color = "#e60073";
+        icon.style.color = "#e60073";
+        btn.setAttribute("data-tooltip", "إلغاء من المفضلة");
       } else {
         favorites.splice(index, 1);
-        btn.querySelector('i').style.color = "#5e2ca5";
+        icon.style.color = "#5e2ca5";
+        btn.setAttribute("data-tooltip", "أضف إلى المفضلة");
       }
 
       localStorage.setItem("favorites", JSON.stringify(favorites));
     }
 
-    // تفعيل التلوين للمحفوظين سابقًا
+    function printThought(button) {
+      const thoughtText = button.closest(".thought-card").childNodes[0].textContent.trim();
+      const printWindow = window.open('', '', 'height=500,width=700');
+      printWindow.document.write('<html><head><title>طباعة الخاطرة</title></head><body style="direction: rtl; font-family: Arial;">');
+      printWindow.document.write('<p>' + thoughtText + '</p>');
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
+    }
+
     window.onload = () => {
       let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
       document.querySelectorAll(".thought-card").forEach(card => {
         const id = card.getAttribute("data-id");
         const key = `thought-${id}`;
         if (favorites.includes(key)) {
-          const btn = card.querySelector(".icon-btn");
+          const btn = card.querySelector("button");
           btn.querySelector("i").style.color = "#e60073";
+          btn.setAttribute("data-tooltip", "إلغاء من المفضلة");
         }
       });
     };
