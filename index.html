@@ -1,6 +1,3 @@
-<!-- المؤثر البصري تمت إزالته بالكامل من الـ HTML -->
-<!-- وحذفت أيضًا CSS الخاص بـ .background-circles و .circle و @keyframes float -->
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -185,9 +182,19 @@
 
   <!-- زر المشاركة -->
   <div class="share-button">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://husseinalkhalil.com" target="_blank" title="مشاركة على فيسبوك">
-      <img src="images/share.png" alt="مشاركة">
-    </a>
+    <img src="images/share.png" alt="مشاركة" onclick="toggleShareMenu()" />
+    <div id="share-menu" style="display:none; background:#fff; border:1px solid #ccc; padding:10px; border-radius:8px; position:absolute; top:50px; left:0; width:180px; box-shadow:0 0 10px rgba(0,0,0,0.2);">
+      <div style="margin-bottom:10px; cursor:pointer; color:#5e2ca5;" onclick="copyLink()">📋 نسخ الرابط</div>
+      <div style="display:flex; justify-content:space-between; flex-wrap: wrap; gap: 10px;">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://husseinalkhalil.com" target="_blank"><img src="icons/facebook.png" width="32" title="فيسبوك" /></a>
+        <a href="https://api.whatsapp.com/send?text=https://husseinalkhalil.com" target="_blank"><img src="icons/whatsapp.png" width="32" title="واتساب" /></a>
+        <a href="https://t.me/share/url?url=https://husseinalkhalil.com" target="_blank"><img src="icons/telegram.png" width="32" title="تلغرام" /></a>
+        <a href="https://x.com/intent/tweet?url=https://husseinalkhalil.com" target="_blank"><img src="icons/x.png" width="32" title="تويتر/X" /></a>
+        <a href="https://www.instagram.com/" target="_blank"><img src="icons/instagram.png" width="32" title="إنستغرام" /></a>
+        <a href="https://www.tiktok.com/" target="_blank"><img src="icons/tiktok.png" width="32" title="تيك توك" /></a>
+        <a href="https://www.youtube.com/" target="_blank"><img src="icons/youtube.png" width="32" title="يوتيوب" /></a>
+      </div>
+    </div>
   </div>
 
   <!-- القائمة العلوية -->
@@ -261,5 +268,25 @@
     </div>
   </div>
 
-</body>
-</html>
+  <!-- سكريبتات المشاركة -->
+  <script>
+    function toggleShareMenu() {
+      const menu = document.getElementById("share-menu");
+      menu.style.display = (menu.style.display === "none") ? "block" : "none";
+    }
+
+    function copyLink() {
+      const link = "https://husseinalkhalil.com";
+      navigator.clipboard.writeText(link).then(() => {
+        alert("تم نسخ الرابط!");
+      });
+    }
+
+    window.addEventListener("click", function(e) {
+      const menu = document.getElementById("share-menu");
+      const button = document.querySelector(".share-button img");
+      if (!menu.contains(e.target) && e.target !== button) {
+        menu.style.display = "none";
+      }
+    });
+  </script
