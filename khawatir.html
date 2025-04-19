@@ -54,53 +54,31 @@
       border-radius: 10px;
       padding: 1.5em;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      font-size: 1.2em;
       position: relative;
+      font-size: 1.2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .buttons {
-      margin-top: 15px;
+    .icons {
       display: flex;
       gap: 10px;
-      justify-content: flex-start;
+      align-items: center;
     }
 
     .icon-btn {
-      background-color: transparent;
-      border: none;
       cursor: pointer;
-      font-size: 1.3em;
-      color: #5e2ca5;
-      position: relative;
+      font-size: 1.4em;
+      color: #a259ff;
+      border: none;
+      background: none;
     }
 
     .icon-btn:hover {
-      color: #4a208f;
-    }
-
-    .icon-btn::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: 125%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #c89fff;
-      color: white;
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 0.75em;
-      opacity: 0;
-      white-space: nowrap;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
-      z-index: 100;
-    }
-
-    .icon-btn:hover::after {
-      opacity: 1;
+      opacity: 0.7;
     }
   </style>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -119,87 +97,62 @@
   <div class="container">
     <h1>خواطر</h1>
 
-    <div class="thoughts">
+    <div class="thoughts" id="thoughts-container">
       <div class="thought-card" data-id="1">
-        لا تتنازل عن عقلك لأي سلطة، حتى لو لبست عباءة الدين.
-        <div class="buttons">
-          <button class="icon-btn" data-tooltip="أضف إلى المفضلة" onclick="toggleFavorite(1, this)">
-            <i class="fa-solid fa-heart"></i>
-          </button>
-          <button class="icon-btn" data-tooltip="طباعة الخاطرة" onclick="printThought(this)">
-            <i class="fa-solid fa-print"></i>
-          </button>
+        <div>لا تتنازل عن عقلك لأي سلطة، حتى لو لبست عباءة الدين.</div>
+        <div class="icons">
+          <button class="icon-btn" onclick="toggleFavorite(1, this)">♥</button>
+          <button class="icon-btn" onclick="printThought(this)">🖨️</button>
         </div>
       </div>
 
       <div class="thought-card" data-id="2">
-        الشجاعة الحقيقية هي أن تفكر، لا أن تتبع.
-        <div class="buttons">
-          <button class="icon-btn" data-tooltip="أضف إلى المفضلة" onclick="toggleFavorite(2, this)">
-            <i class="fa-solid fa-heart"></i>
-          </button>
-          <button class="icon-btn" data-tooltip="طباعة الخاطرة" onclick="printThought(this)">
-            <i class="fa-solid fa-print"></i>
-          </button>
+        <div>الشجاعة الحقيقية هي أن تفكر، لا أن تتبع.</div>
+        <div class="icons">
+          <button class="icon-btn" onclick="toggleFavorite(2, this)">♥</button>
+          <button class="icon-btn" onclick="printThought(this)">🖨️</button>
         </div>
       </div>
 
       <div class="thought-card" data-id="3">
-        الأسئلة التي تحرّكك أهم من الأجوبة التي ترثها.
-        <div class="buttons">
-          <button class="icon-btn" data-tooltip="أضف إلى المفضلة" onclick="toggleFavorite(3, this)">
-            <i class="fa-solid fa-heart"></i>
-          </button>
-          <button class="icon-btn" data-tooltip="طباعة الخاطرة" onclick="printThought(this)">
-            <i class="fa-solid fa-print"></i>
-          </button>
+        <div>الأسئلة التي تحرّكك أهم من الأجوبة التي ترثها.</div>
+        <div class="icons">
+          <button class="icon-btn" onclick="toggleFavorite(3, this)">♥</button>
+          <button class="icon-btn" onclick="printThought(this)">🖨️</button>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    function toggleFavorite(id, btn) {
-      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-      const key = `thought-${id}`;
-      const icon = btn.querySelector("i");
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
+    function toggleFavorite(id, btn) {
+      const key = `thought-${id}`;
       const index = favorites.indexOf(key);
       if (index === -1) {
         favorites.push(key);
-        icon.style.color = "#e60073";
-        btn.setAttribute("data-tooltip", "إلغاء من المفضلة");
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert("تمت الإضافة إلى المفضلة!");
       } else {
         favorites.splice(index, 1);
-        icon.style.color = "#5e2ca5";
-        btn.setAttribute("data-tooltip", "أضف إلى المفضلة");
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert("تمت الإزالة من المفضلة.");
       }
-
-      localStorage.setItem("favorites", JSON.stringify(favorites));
     }
 
     function printThought(button) {
-      const thoughtText = button.closest(".thought-card").childNodes[0].textContent.trim();
-      const printWindow = window.open('', '', 'height=500,width=700');
-      printWindow.document.write('<html><head><title>طباعة الخاطرة</title></head><body style="direction: rtl; font-family: Arial;">');
-      printWindow.document.write('<p>' + thoughtText + '</p>');
-      printWindow.document.write('</body></html>');
-      printWindow.document.close();
-      printWindow.print();
+      const card = button.closest(".thought-card");
+      const text = card.querySelector("div").innerText;
+      const printWindow = window.open('', '', 'width=600,height=400');
+      printWindow.document.write(`
+        <html dir="rtl"><head><title>طباعة</title></head><body style="font-family: sans-serif; padding: 2em;">
+        <p>${text}</p>
+        <script>setTimeout(() => { window.print(); window.close(); }, 500);<\/script>
+        </body></html>
+      `);
     }
-
-    window.onload = () => {
-      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-      document.querySelectorAll(".thought-card").forEach(card => {
-        const id = card.getAttribute("data-id");
-        const key = `thought-${id}`;
-        if (favorites.includes(key)) {
-          const btn = card.querySelector("button");
-          btn.querySelector("i").style.color = "#e60073";
-          btn.setAttribute("data-tooltip", "إلغاء من المفضلة");
-        }
-      });
-    };
   </script>
+
 </body>
 </html>
