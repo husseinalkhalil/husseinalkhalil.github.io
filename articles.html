@@ -56,6 +56,7 @@
       margin-bottom: 1.5em;
       box-shadow: 0 4px 8px rgba(0,0,0,0.05);
       text-align: right;
+      position: relative;
     }
 
     .article h2 {
@@ -77,19 +78,49 @@
       text-decoration: underline;
     }
 
-    .favorite-button {
-      background-color: #6a0dad;
-      color: white;
-      padding: 8px 20px;
-      border: none;
-      border-radius: 8px;
+    .button-group {
       margin-top: 10px;
-      cursor: pointer;
-      font-size: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .favorite-button:hover {
-      background-color: #4b0082;
+    .favorite-button, .print-button {
+      background-color: #a974e3;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .favorite-button:hover, .print-button:hover {
+      background-color: #8f5fd3;
+    }
+
+    .tooltip {
+      visibility: hidden;
+      background-color: #8f5fd3;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 8px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%; /* فوق الزر */
+      right: 50%;
+      transform: translateX(50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .print-button:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
     }
   </style>
 </head>
@@ -108,20 +139,28 @@
     <h1>مقالاتي</h1>
     <p class="intro">في هذه الصفحة أشارك تأملاتي وكتاباتي في التنوير، وقراءة معاصرة للنص، ونقد الموروث بوعي واحترام للعقل.</p>
 
-    <div class="article">
+    <div class="article" id="article1">
       <h2>❖ لماذا نحتاج إلى قراءة معاصرة للنص الديني؟</h2>
       <p>لم تعد القراءة التقليدية للنصوص قادرة على تقديم حلول لواقعنا المعاصر، بل كثير منها يخلق تناقضًا بين الدين والحياة...</p>
       <a href="#">قراءة المزيد</a>
-      <br>
-      <button class="favorite-button" onclick="addToFavorites('❖ لماذا نحتاج إلى قراءة معاصرة للنص الديني؟')">⭐ أضف إلى المفضلة</button>
+      <div class="button-group">
+        <button class="favorite-button" onclick="addToFavorites('❖ لماذا نحتاج إلى قراءة معاصرة للنص الديني؟')">⭐ أضف إلى المفضلة</button>
+        <button class="print-button" onclick="printArticle('article1')">🖨️ طباعة
+          <span class="tooltip">اطبع هذه المقالة</span>
+        </button>
+      </div>
     </div>
 
-    <div class="article">
+    <div class="article" id="article2">
       <h2>❖ بين الوحي والتأويل: متى نضع العقل في مركز التفسير؟</h2>
       <p>التأويل ليس ترفًا فكريًا، بل ضرورة لفهم النص في سياقه التاريخي والاجتماعي، ولا بد أن يُعاد الاعتبار للعقل كأداة للفهم...</p>
       <a href="#">قراءة المزيد</a>
-      <br>
-      <button class="favorite-button" onclick="addToFavorites('❖ بين الوحي والتأويل: متى نضع العقل في مركز التفسير؟')">⭐ أضف إلى المفضلة</button>
+      <div class="button-group">
+        <button class="favorite-button" onclick="addToFavorites('❖ بين الوحي والتأويل: متى نضع العقل في مركز التفسير؟')">⭐ أضف إلى المفضلة</button>
+        <button class="print-button" onclick="printArticle('article2')">🖨️ طباعة
+          <span class="tooltip">اطبع هذه المقالة</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -135,6 +174,26 @@
       } else {
         alert("العنصر موجود بالفعل في المفضلة.");
       }
+    }
+
+    function printArticle(articleId) {
+      const articleContent = document.getElementById(articleId).innerHTML;
+      const originalContent = document.body.innerHTML;
+      document.body.innerHTML = `
+        <html>
+          <head>
+            <title>طباعة المقالة</title>
+            <style>
+              body { direction: rtl; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; color: #2f003f; }
+              h2 { color: #4a208f; }
+            </style>
+          </head>
+          <body>
+            ${articleContent}
+          </body>
+        </html>`;
+      window.print();
+      document.body.innerHTML = originalContent;
     }
   </script>
 
