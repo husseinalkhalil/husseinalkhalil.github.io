@@ -31,25 +31,6 @@
       text-decoration: underline;
     }
 
-    /* تنسيق مستطيل البحث */
-    .search-container {
-      direction: rtl;
-      max-width: 1100px;
-      margin: 1em auto 0 auto;
-      text-align: left;
-      padding: 0 2em;
-    }
-
-    .search-container input[type="text"] {
-      padding: 0.8em 1em;
-      width: 250px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-      background-color: #faf4ff;
-      color: #4b007d;
-    }
-
     .header {
       display: flex;
       align-items: center;
@@ -109,16 +90,19 @@
       margin: auto;
     }
 
-    .card {
+    a.card {
       background-color: #faf4ff;
       padding: 1.5em;
       border-radius: 12px;
       text-align: center;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       transition: transform 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
 
-    .card:hover {
+    a.card:hover {
       transform: translateY(-5px);
     }
 
@@ -127,30 +111,13 @@
       margin-bottom: 1em;
     }
 
-    .card a {
-      display: block;
-      margin-top: 0.8em;
-      color: #5e2ca5;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .card a:hover {
-      text-decoration: underline;
-    }
-
     @media (max-width: 600px) {
       .header {
         flex-direction: column;
         text-align: center;
       }
-
       .header img {
         margin: 0 0 1em 0;
-      }
-
-      .search-container {
-        text-align: center;
       }
     }
   </style>
@@ -169,11 +136,6 @@
     <a href="support.html">الدعم</a>
   </nav>
 
-  <!-- مستطيل البحث -->
-  <div class="search-container">
-    <input type="text" placeholder="ابحث في الموقع..." />
-  </div>
-
   <!-- معلومات الكاتب -->
   <div class="header">
     <img src="images/profile.png" alt="صورة حسين">
@@ -191,41 +153,34 @@
 
   <!-- مربعات الأقسام -->
   <div class="cards">
-    <div class="card" onclick="location.href='books.html'">
+    <a href="books.html" class="card">
       <img src="icons/books.png" alt="الكتب">
       <div>الكتب</div>
-      <a href="books.html">اذهب إلى الكتب</a>
-    </div>
-    <div class="card" onclick="location.href='articles.html'">
+    </a>
+    <a href="articles.html" class="card">
       <img src="icons/articles.png" alt="المقالات">
       <div>مقالاتي</div>
-      <a href="articles.html">اذهب إلى المقالات</a>
-    </div>
-    <div class="card" onclick="location.href='videos.html'">
+    </a>
+    <a href="videos.html" class="card">
       <img src="icons/videos.png" alt="فيديوهاتي">
       <div>فيديوهاتي</div>
-      <a href="videos.html">اذهب إلى الفيديوهات</a>
-    </div>
-    <div class="card" onclick="location.href='ask.html'">
+    </a>
+    <a href="ask.html" class="card">
       <img src="icons/ask.png" alt="اطرح سؤالك">
       <div>اطرح سؤالك</div>
-      <a href="ask.html">اذهب إلى الأسئلة</a>
-    </div>
-    <div class="card" onclick="location.href='favorites.html'">
+    </a>
+    <a href="favorites.html" class="card">
       <img src="icons/favorites.png" alt="المفضلة">
       <div>المفضلة</div>
-      <a href="favorites.html">اذهب إلى المفضلة</a>
-    </div>
-    <div class="card" onclick="location.href='khawatir.html'">
+    </a>
+    <a href="khawatir.html" class="card">
       <img src="icons/khawatir.png" alt="خواطر">
       <div>خواطر</div>
-      <a href="khawatir.html">اذهب إلى الخواطر</a>
-    </div>
-    <div class="card" onclick="location.href='support.html'">
+    </a>
+    <a href="support.html" class="card">
       <img src="icons/support.png" alt="ادعمني">
       <div>ادعمني</div>
-      <a href="support.html">اذهب إلى الدعم</a>
-    </div>
+    </a>
   </div>
 
 </body>
