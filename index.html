@@ -42,7 +42,7 @@
       top: 120%;
       right: 50%;
       transform: translateX(50%);
-      background-color: #5e2ca5;
+      background-color: #7b3fcf; /* بنفسجي أفتح */
       color: #fff;
       padding: 5px 10px;
       border-radius: 6px;
@@ -186,6 +186,10 @@
       cursor: pointer;
     }
 
+    .share-button.tooltip::after {
+      background-color: #7b3fcf;
+    }
+
     @media (max-width: 600px) {
       .header {
         flex-direction: column;
@@ -205,7 +209,7 @@
 <body>
 
   <!-- زر المشاركة -->
-  <div class="share-button">
+  <div class="share-button tooltip" data-tooltip="مشاركة الموقع">
     <img src="images/share.png" alt="مشاركة" onclick="toggleShareMenu()" />
     <div id="share-menu" style="display:none; background:#fff; border:1px solid #ccc; padding:10px; border-radius:8px; position:absolute; top:50px; left:0; width:180px; box-shadow:0 0 10px rgba(0,0,0,0.2);">
       <div style="margin-bottom:10px; cursor:pointer; color:#5e2ca5;" onclick="copyLink()">🔗 نسخ الرابط</div>
