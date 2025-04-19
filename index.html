@@ -11,12 +11,48 @@
       margin: 0;
       padding: 0;
       color: #2f003f;
+      overflow-x: hidden;
+    }
+
+    /* مؤثر بصري: دوائر خلفية متحركة */
+    .background-circles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(94, 44, 165, 0.1);
+      animation: float 20s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
     }
 
     nav {
       background-color: #5e2ca5;
       padding: 1em;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     nav a {
@@ -31,13 +67,14 @@
       text-decoration: underline;
     }
 
-    /* تنسيق مستطيل البحث */
     .search-container {
       direction: rtl;
       max-width: 1100px;
       margin: 1em auto 0 auto;
       text-align: left;
       padding: 0 2em;
+      position: relative;
+      z-index: 1;
     }
 
     .search-container input[type="text"] {
@@ -58,6 +95,8 @@
       text-align: right;
       max-width: 1100px;
       margin: auto;
+      position: relative;
+      z-index: 1;
     }
 
     .header img {
@@ -86,6 +125,8 @@
     .title {
       text-align: center;
       margin-top: 1em;
+      position: relative;
+      z-index: 1;
     }
 
     .title h1 {
@@ -107,6 +148,8 @@
       padding: 2em;
       max-width: 1100px;
       margin: auto;
+      position: relative;
+      z-index: 1;
     }
 
     .card {
@@ -139,6 +182,20 @@
       text-decoration: underline;
     }
 
+    /* زر المشاركة */
+    .share-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+    }
+
+    .share-button img {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+
     @media (max-width: 600px) {
       .header {
         flex-direction: column;
@@ -156,6 +213,22 @@
   </style>
 </head>
 <body>
+
+  <!-- مؤثر بصري -->
+  <div class="background-circles">
+    <div class="circle" style="width: 200px; height: 200px; left: 10%; animation-delay: 0s;"></div>
+    <div class="circle" style="width: 150px; height: 150px; left: 30%; animation-delay: 4s;"></div>
+    <div class="circle" style="width: 100px; height: 100px; left: 50%; animation-delay: 2s;"></div>
+    <div class="circle" style="width: 120px; height: 120px; left: 70%; animation-delay: 6s;"></div>
+    <div class="circle" style="width: 180px; height: 180px; left: 90%; animation-delay: 1s;"></div>
+  </div>
+
+  <!-- زر المشاركة -->
+  <div class="share-button">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://husseinalkhalil.com" target="_blank" title="مشاركة على فيسبوك">
+      <img src="images/share.png" alt="مشاركة">
+    </a>
+  </div>
 
   <!-- القائمة العلوية -->
   <nav>
