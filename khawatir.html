@@ -70,35 +70,29 @@
     .icon-btn {
       cursor: pointer;
       font-size: 1.4em;
-      color: #a259ff;
       border: none;
       background: none;
       position: relative;
+      color: #a259ff; /* اللون الافتراضي */
+      transition: color 0.3s ease;
     }
 
-    .icon-btn:hover {
-      opacity: 0.7;
+    .icon-btn.favorited {
+      color: #5e2ca5; /* لون التفعيل */
     }
 
-    .icon-btn::after {
+    .icon-btn:hover::after {
       content: attr(data-tooltip);
       position: absolute;
       bottom: 125%;
       left: 50%;
       transform: translateX(-50%);
-      background-color: #c89fff;
+      background-color: #5e2ca5;
       color: #fff;
       padding: 4px 8px;
       border-radius: 4px;
       font-size: 0.8em;
       white-space: nowrap;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 1;
-    }
-
-    .icon-btn:hover::after {
       opacity: 1;
     }
   </style>
@@ -124,24 +118,24 @@
       <div class="thought-card" data-id="1">
         <div>لا تتنازل عن عقلك لأي سلطة، حتى لو لبست عباءة الدين.</div>
         <div class="icons">
-          <button class="icon-btn" data-tooltip="أضف إلى المفضلة" onclick="toggleFavorite(1, this)">♥</button>
-          <button class="icon-btn" data-tooltip="طباعة" onclick="printThought(this)">🖨️</button>
+          <button class="icon-btn" onclick="toggleFavorite(1, this)" data-tooltip="أضف إلى المفضلة">♥</button>
+          <button class="icon-btn" onclick="printThought(this)" data-tooltip="طباعة الخاطرة">🖨️</button>
         </div>
       </div>
 
       <div class="thought-card" data-id="2">
         <div>الشجاعة الحقيقية هي أن تفكر، لا أن تتبع.</div>
         <div class="icons">
-          <button class="icon-btn" data-tooltip="أضف إلى المفضلة" onclick="toggleFavorite(2, this)">♥</button>
-          <button class="icon-btn" data-tooltip="طباعة" onclick="printThought(this)">🖨️</button>
+          <button class="icon-btn" onclick="toggleFavorite(2, this)" data-tooltip="أضف إلى المفضلة">♥</button>
+          <button class="icon-btn" onclick="printThought(this)" data-tooltip="طباعة الخاطرة">🖨️</button>
         </div>
       </div>
 
       <div class="thought-card" data-id="3">
         <div>الأسئلة التي تحرّكك أهم من الأجوبة التي ترثها.</div>
         <div class="icons">
-          <button class="icon-btn" data-tooltip="أضف إلى المفضلة" onclick="toggleFavorite(3, this)">♥</button>
-          <button class="icon-btn" data-tooltip="طباعة" onclick="printThought(this)">🖨️</button>
+          <button class="icon-btn" onclick="toggleFavorite(3, this)" data-tooltip="أضف إلى المفضلة">♥</button>
+          <button class="icon-btn" onclick="printThought(this)" data-tooltip="طباعة الخاطرة">🖨️</button>
         </div>
       </div>
     </div>
@@ -150,18 +144,33 @@
   <script>
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".thought-card").forEach(card => {
+        const id = card.getAttribute("data-id");
+        const favBtn = card.querySelector(".icon-btn");
+        const key = `thought-${id}`;
+        if (favorites.includes(key)) {
+          favBtn.classList.add("favorited");
+          favBtn.setAttribute("data-tooltip", "تمت الإزالة من المفضلة");
+        }
+      });
+    });
+
     function toggleFavorite(id, btn) {
       const key = `thought-${id}`;
       const index = favorites.indexOf(key);
+
       if (index === -1) {
         favorites.push(key);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        alert("تمت الإضافة إلى المفضلة!");
+        btn.classList.add("favorited");
+        btn.setAttribute("data-tooltip", "تمت الإزالة من المفضلة");
       } else {
         favorites.splice(index, 1);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        alert("تمت الإزالة من المفضلة.");
+        btn.classList.remove("favorited");
+        btn.setAttribute("data-tooltip", "أضف إلى المفضلة");
       }
+
+      localStorage.setItem("favorites", JSON.stringify(favorites));
     }
 
     function printThought(button) {
